@@ -991,6 +991,7 @@ img {
 .closing-links {
   margin-top: 46px;
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 }
 
@@ -1009,7 +1010,7 @@ img {
   transition: transform 160ms ease, background-color 160ms ease;
 }
 
-.closing-links a:last-child { background: var(--blue); }
+.closing-links a:nth-child(even) { background: var(--blue); }
 .closing-links a:hover,
 .closing-links a:focus-visible { transform: translateY(-4px); }
 
@@ -1296,3 +1297,4 @@ img {
   }
   .reveal { opacity: 1; transform: none; }
 }
+
