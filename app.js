@@ -1,6 +1,7 @@
 const LINKS = Object.freeze({
   github: "https://github.com/tianxing226/wtonec",
-  docs: "https://github.com/tianxing226/wtonec/wiki",
+  docs: "https://github.com/tianxing226/wtonec/tree/main/docs",
+  samples: "https://github.com/tianxing226/wtonec/tree/main/examples/android-kotlin",
 });
 
 const SCREENS = Object.freeze({
@@ -230,3 +231,4 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
     secondary.style.transform = "rotate(-5deg)";
   });
 }
+
