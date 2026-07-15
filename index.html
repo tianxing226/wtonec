@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05A5FA">
+  <meta name="description" content="Wtonec 微信语音插件功能介绍：文字转语音、自定义 Fish Audio 音色、本地语音包与微信语音发送。">
+  <title>Wtonec · 微信语音工作台</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="#top" aria-label="Wtonec 首页">
+      <span class="brand-mark" aria-hidden="true">WT</span>
+      <span class="brand-name">Wtonec</span>
+    </a>
+    <nav class="site-nav" aria-label="页面导航">
+      <a href="#features">能力</a>
+      <a href="#showcase">界面</a>
+      <a href="#pipeline">流程</a>
+      <a href="#security">安全</a>
+    </nav>
+    <a class="header-repo" data-link="github" href="https://github.com/tianxing226/wtonec" target="_blank" rel="noreferrer">
+      源码 <span aria-hidden="true">↗</span>
+    </a>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-media" aria-hidden="true">
+        <img class="hero-shot hero-shot-primary" src="assets/wtonec-home.jpg" alt="">
+        <img class="hero-shot hero-shot-secondary" src="assets/wtonec-settings.jpg" alt="">
+      </div>
+
+      <div class="hero-content">
+        <p class="hero-kicker"><span></span> Android · LSPosed · Fish Audio</p>
+        <h1 id="hero-title">Wtonec</h1>
+        <p class="hero-lead">把文字，变成可以直接发送到微信会话的语音。</p>
+        <p class="hero-copy">预设音色、自定义克隆音色、本地语音包与 MP3 → SILK 转换，集中在一个长按即可唤起的语音面板中。</p>
+        <div class="hero-actions" aria-label="项目入口">
+          <a class="button button-lime" data-link="github" href="https://github.com/tianxing226/wtonec" target="_blank" rel="noreferrer">
+            <span>GitHub 项目</span><span aria-hidden="true">↗</span>
+          </a>
+          <a class="button button-blue" data-link="docs" href="https://github.com/tianxing226/wtonec/wiki" target="_blank" rel="noreferrer">
+            <span>项目文档</span><span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div class="hero-facts" aria-label="技术标签">
+          <span>微信内面板</span>
+          <span>本地 SILK 编码</span>
+          <span>API Key 加密存储</span>
+        </div>
+      </div>
+
+      <a class="hero-next" href="#features" aria-label="查看 Wtonec 核心能力">
+        <span>探索能力</span><span aria-hidden="true">↓</span>
+      </a>
+    </section>
+
+    <section class="signal-band" aria-label="Wtonec 能力摘要">
+      <div class="signal-track">
+        <span>文字转微信语音</span><b>+</b>
+        <span>预设音色快速切换</span><b>+</b>
+        <span>Fish Audio 自定义音色</span><b>+</b>
+        <span>本地语音包</span><b>+</b>
+        <span>MP3 / SILK 音频链</span>
+      </div>
+    </section>
+
+    <section class="section section-features" id="features" aria-labelledby="features-title">
+      <div class="section-heading reveal">
+        <p class="eyebrow">CORE CAPABILITIES / 01</p>
+        <h2 id="features-title">四条路径，一个发送动作</h2>
+        <p>从输入文字到发送当前会话，Wtonec 把选音色、生成、试听、缓存与格式转换组织成连续工作流。</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card feature-card-blue reveal">
+          <span class="feature-index">01</span>
+          <h3>预设音色</h3>
+          <p>搜索、收藏和快速切换音色，通过预设参数生成语音，适合高频使用。</p>
+          <div class="feature-meta"><span>搜索</span><span>收藏</span><span>试听</span></div>
+        </article>
+        <article class="feature-card feature-card-lime reveal">
+          <span class="feature-index">02</span>
+          <h3>克隆音色</h3>
+          <p>保存多个 Fish Audio 音色 ID，在自定义列表中直接选择并生成。</p>
+          <div class="feature-meta"><span>多音色</span><span>自定义</span><span>管理</span></div>
+        </article>
+        <article class="feature-card feature-card-dark reveal">
+          <span class="feature-index">03</span>
+          <h3>本地语音包</h3>
+          <p>导入、搜索、排序、试听、重命名和发送，让常用音频成为随取随用的素材库。</p>
+          <div class="feature-meta"><span>导入</span><span>管理</span><span>发送</span></div>
+        </article>
+        <article class="feature-card feature-card-coral reveal">
+          <span class="feature-index">04</span>
+          <h3>微信兼容音频</h3>
+          <p>接口返回 MP3 后在本地完成解码与 SILK 编码，再进入微信语音发送链。</p>
+          <div class="feature-meta"><span>MP3</span><span>SILK</span><span>当前会话</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="workbench-band" aria-labelledby="workbench-title">
+      <div class="workbench-copy reveal">
+        <p class="eyebrow">INTERACTIVE PREVIEW / 02</p>
+        <h2 id="workbench-title">让一句话拥有不同声音</h2>
+        <p>切换生成模式，输入一段文字，查看音频处理过程的界面反馈。</p>
+      </div>
+
+      <div class="voice-workbench reveal" data-workbench>
+        <div class="workbench-toolbar">
+          <div class="segmented" role="group" aria-label="音色模式">
+            <button type="button" class="mode-button is-active" data-mode="预设音色" aria-pressed="true">预设</button>
+            <button type="button" class="mode-button" data-mode="克隆音色" aria-pressed="false">克隆</button>
+            <button type="button" class="mode-button" data-mode="本地语音包" aria-pressed="false">语音包</button>
+          </div>
+          <span class="mode-status" data-mode-status>预设音色</span>
+        </div>
+
+        <label class="text-input-label" for="voice-text">文字内容</label>
+        <textarea id="voice-text" maxlength="120" rows="3" data-voice-text>今天也要用喜欢的声音，认真说出想说的话。</textarea>
+        <div class="text-input-meta"><span>当前会话 · chatroom</span><span><b data-char-count>23</b>/120</span></div>
+
+        <div class="waveform" aria-hidden="true" data-waveform>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+
+        <div class="workbench-footer">
+          <p data-generation-status aria-live="polite">准备生成微信兼容语音</p>
+          <button class="generate-button" type="button" data-generate>
+            <span aria-hidden="true">▶</span><span>生成演示</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-showcase" id="showcase" aria-labelledby="showcase-title">
+      <div class="section-heading reveal">
+        <p class="eyebrow">REAL INTERFACE / 03</p>
+        <h2 id="showcase-title">真实界面，不是概念图</h2>
+        <p>主页、设置、安全与关于页面均来自 Wtonec 实机截图，界面状态可直接对照当前构建。</p>
+      </div>
+
+      <div class="showcase-layout reveal" data-gallery>
+        <div class="gallery-tabs" role="tablist" aria-label="Wtonec 页面截图">
+          <button type="button" role="tab" aria-selected="true" class="gallery-tab is-active" data-screen="home">
+            <span>01</span><strong>主页</strong><small>运行状态与项目入口</small>
+          </button>
+          <button type="button" role="tab" aria-selected="false" tabindex="-1" class="gallery-tab" data-screen="settings">
+            <span>02</span><strong>设置</strong><small>宿主、DEX 与维护</small>
+          </button>
+          <button type="button" role="tab" aria-selected="false" tabindex="-1" class="gallery-tab" data-screen="security">
+            <span>03</span><strong>安全</strong><small>检测框架与计划能力</small>
+          </button>
+          <button type="button" role="tab" aria-selected="false" tabindex="-1" class="gallery-tab" data-screen="about">
+            <span>04</span><strong>关于</strong><small>构建身份与使用说明</small>
+          </button>
+        </div>
+
+        <div class="gallery-stage" data-gallery-stage>
+          <div class="gallery-accent" aria-hidden="true"></div>
+          <button class="screenshot-button" type="button" data-open-lightbox aria-label="放大当前 Wtonec 截图">
+            <img src="assets/wtonec-home.jpg" alt="Wtonec 主页实机截图" data-gallery-image>
+          </button>
+          <div class="gallery-caption">
+            <p data-gallery-eyebrow>运行状态</p>
+            <h3 data-gallery-title>一眼确认模块与语音功能</h3>
+            <span data-gallery-description>展示 LSPosed 激活状态、语音入口以及 TG、官网和项目链接。</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pipeline-band" id="pipeline" aria-labelledby="pipeline-title">
+      <div class="pipeline-heading reveal">
+        <p class="eyebrow">AUDIO PIPELINE / 04</p>
+        <h2 id="pipeline-title">从文本到微信语音</h2>
+      </div>
+      <ol class="pipeline" aria-label="Wtonec 音频处理流程">
+        <li class="pipeline-step reveal"><span>01</span><strong>输入文字</strong><small>最多 500 字</small></li>
+        <li class="pipeline-step reveal"><span>02</span><strong>选择音色</strong><small>预设或 Fish ID</small></li>
+        <li class="pipeline-step reveal"><span>03</span><strong>获取 MP3</strong><small>流式写入缓存</small></li>
+        <li class="pipeline-step reveal"><span>04</span><strong>编码 SILK</strong><small>本地音频处理</small></li>
+        <li class="pipeline-step pipeline-step-final reveal"><span>05</span><strong>发送会话</strong><small>私聊与群聊</small></li>
+      </ol>
+    </section>
+
+    <section class="section security-section" id="security" aria-labelledby="security-title">
+      <div class="security-visual reveal">
+        <img src="assets/wtonec-security.jpg" alt="Wtonec 安全页面实机截图">
+      </div>
+      <div class="security-copy reveal">
+        <p class="eyebrow">SECURITY FRAMEWORK / 05</p>
+        <h2 id="security-title">安全能力，按真实进度呈现</h2>
+        <p class="security-lead">当前版本已经建立安全页、状态模型与扩展接口；Hook 环境、模块清单、进程信号、权限与数据访问风险扫描仍处于待开发状态。</p>
+        <ul class="security-list">
+          <li><span></span>API Key 通过 Android Keystore 加密保存</li>
+          <li><span></span>构建身份与 DEX 缓存状态可追踪</li>
+          <li><span></span>扫描页面不输出虚假的评分或结论</li>
+        </ul>
+        <div class="security-status"><i aria-hidden="true"></i><span>框架已就绪 · 扫描能力待开发</span></div>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <p class="eyebrow">WTONEC / ANDROID VOICE STUDIO</p>
+      <h2 id="closing-title">让语音发送，更像一次创作。</h2>
+      <p>查看源码与更新记录，或从项目文档入口继续了解安装、配置和音频处理细节。</p>
+      <div class="closing-links">
+        <a data-link="github" href="https://github.com/tianxing226/wtonec" target="_blank" rel="noreferrer">GitHub 项目 <span aria-hidden="true">↗</span></a>
+        <a data-link="docs" href="https://github.com/tianxing226/wtonec/wiki" target="_blank" rel="noreferrer">项目文档 <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="brand footer-brand"><span class="brand-mark" aria-hidden="true">WT</span><span class="brand-name">Wtonec</span></div>
+    <p>Android 微信语音工作台</p>
+    <p>© <span data-year></span> Wtonec</p>
+  </footer>
+
+  <dialog class="lightbox" data-lightbox aria-label="Wtonec 截图预览">
+    <button type="button" class="lightbox-close" data-close-lightbox aria-label="关闭截图预览">×</button>
+    <img src="assets/wtonec-home.jpg" alt="Wtonec 页面大图" data-lightbox-image>
+    <p data-lightbox-caption>Wtonec 主页</p>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
