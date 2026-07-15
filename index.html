@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#05A5FA">
-  <meta name="description" content="Wtonec 微信语音插件功能介绍：文字转语音、自定义 Fish Audio 音色、本地语音包与微信语音发送。">
+  <meta name="description" content="Wtonec 独立 Android 微信语音工具：文字转语音、Fish Audio 自定义音色、本地语音包与微信语音发送。">
   <title>Wtonec · 微信语音工作台</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -21,9 +21,10 @@
       <a href="#showcase">界面</a>
       <a href="#pipeline">流程</a>
       <a href="#security">安全</a>
+      <a href="#storage">数据</a>
     </nav>
     <a class="header-repo" data-link="github" href="https://github.com/tianxing226/wtonec" target="_blank" rel="noreferrer">
-      源码 <span aria-hidden="true">↗</span>
+      项目仓库 <span aria-hidden="true">↗</span>
     </a>
   </header>
 
@@ -39,10 +40,10 @@
         <p class="hero-kicker"><span></span> Android · LSPosed · Fish Audio</p>
         <h1 id="hero-title">Wtonec</h1>
         <p class="hero-lead">把文字，变成可以直接发送到微信会话的语音。</p>
-        <p class="hero-copy">预设音色、自定义克隆音色、本地语音包与 MP3 → SILK 转换，集中在一个长按即可唤起的语音面板中。</p>
+        <p class="hero-copy">独立维护的 Android 微信语音工具，把预设音色、克隆音色、本地语音包与 MP3 → SILK 转换集中在一个长按即可唤起的面板中。</p>
         <div class="hero-actions" aria-label="项目入口">
           <a class="button button-lime" data-link="github" href="https://github.com/tianxing226/wtonec" target="_blank" rel="noreferrer">
-            <span>GitHub 项目</span><span aria-hidden="true">↗</span>
+            <span>项目仓库</span><span aria-hidden="true">↗</span>
           </a>
           <a class="button button-blue" data-link="docs" href="https://github.com/tianxing226/wtonec/tree/main/docs" target="_blank" rel="noreferrer">
             <span>项目文档</span><span aria-hidden="true">↗</span>
@@ -190,12 +191,35 @@
       </ol>
     </section>
 
+    <section class="storage-band" id="storage" aria-labelledby="storage-title">
+      <div class="storage-copy reveal">
+        <p class="eyebrow">LOCAL DATA / 05</p>
+        <h2 id="storage-title">数据位置，清楚可查</h2>
+        <p>语音包、音色元数据、DEX 缓存和日志均按明确目录组织。Android 11+ 会限制普通文件管理器访问 Android/data，日常维护优先使用应用内导入、导出和清理入口。</p>
+        <p>跨设备或微信实例迁移时先导出 MP3 和记录自定义音色，再由目标环境重建路径与索引。</p>
+        <a data-link="storage" href="https://github.com/tianxing226/wtonec/blob/main/docs/STORAGE.md" target="_blank" rel="noreferrer">查看存储说明 <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="storage-details reveal">
+        <div class="storage-root">
+          <span>标准微信主目录</span>
+          <code>/storage/emulated/0/Android/data/com.tencent.mm/Wtonec/</code>
+        </div>
+        <dl class="storage-list">
+          <div><dt>wtonec/voices</dt><dd>已保存和导入的语音包</dd></div>
+          <div><dt>wtonec/metadata</dt><dd>音色目录与本地索引</dd></div>
+          <div><dt>dex_cache</dt><dd>微信版本指纹与匹配结果</dd></div>
+          <div><dt>logs / crashes</dt><dd>运行日志与崩溃诊断</dd></div>
+          <div><dt>cache/Wtonec</dt><dd>可清理的语音生成任务缓存</dd></div>
+        </dl>
+      </div>
+    </section>
+
     <section class="section security-section" id="security" aria-labelledby="security-title">
       <div class="security-visual reveal">
         <img src="assets/wtonec-security.jpg" alt="Wtonec 安全页面实机截图">
       </div>
       <div class="security-copy reveal">
-        <p class="eyebrow">SECURITY FRAMEWORK / 05</p>
+        <p class="eyebrow">SECURITY FRAMEWORK / 06</p>
         <h2 id="security-title">安全能力，按真实进度呈现</h2>
         <p class="security-lead">当前版本已经建立安全页、状态模型与扩展接口；Hook 环境、模块清单、进程信号、权限与数据访问风险扫描仍处于待开发状态。</p>
         <ul class="security-list">
@@ -210,9 +234,9 @@
     <section class="closing" aria-labelledby="closing-title">
       <p class="eyebrow">WTONEC / ANDROID VOICE STUDIO</p>
       <h2 id="closing-title">让语音发送，更像一次创作。</h2>
-      <p>查看源码与更新记录，或从项目文档入口继续了解安装、配置和音频处理细节。</p>
+      <p>查看项目仓库与更新记录，或从文档入口继续了解安装、配置、数据目录和音频处理细节。</p>
       <div class="closing-links">
-        <a data-link="github" href="https://github.com/tianxing226/wtonec" target="_blank" rel="noreferrer">GitHub 项目 <span aria-hidden="true">↗</span></a>
+        <a data-link="github" href="https://github.com/tianxing226/wtonec" target="_blank" rel="noreferrer">项目仓库 <span aria-hidden="true">↗</span></a>
         <a data-link="docs" href="https://github.com/tianxing226/wtonec/tree/main/docs" target="_blank" rel="noreferrer">项目文档 <span aria-hidden="true">↗</span></a>
         <a data-link="samples" href="https://github.com/tianxing226/wtonec/tree/main/examples/android-kotlin" target="_blank" rel="noreferrer">公开样例 <span aria-hidden="true">↗</span></a>
       </div>

@@ -1,6 +1,6 @@
 # Android Kotlin 公开样例
 
-这些文件用于说明 Wtonec 面向用户的模式、数据形态、Tiax 请求参数关系和语音工作流契约。它们是独立整理的参考代码，不包含可运行的微信模块实现。
+这些文件是 Wtonec 独立整理的公开样例，用于说明用户模式、数据形态、Tiax 请求参数关系和语音工作流契约。它们不包含可运行的微信模块实现，也不代表正式应用的内部结构。
 
 ## 目录
 
@@ -38,4 +38,4 @@ TiaxRequestExample.build(
 
 ## 边界
 
-公开样例不是完整 SDK，也不包含 Xposed/LSPosed、DexKit、微信内部调用、MP3/SILK、JNI、SAF、Overlay、Key 加密、签名或加固实现。完整边界见 [PUBLIC_SOURCE_SCOPE.md](../../docs/PUBLIC_SOURCE_SCOPE.md)。
+公开样例不是完整 SDK，也不包含 Xposed/LSPosed、DexKit、微信内部调用、MP3/SILK、JNI、SAF、Overlay、Key 加密、签名或加固实现。完整边界见 [公开样例范围](../../docs/PUBLIC_SOURCE_SCOPE.md)。
