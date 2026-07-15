@@ -9,4 +9,3 @@ interface VoiceWorkflowContract {
 
     suspend fun send(): Result<Unit>
 }
-

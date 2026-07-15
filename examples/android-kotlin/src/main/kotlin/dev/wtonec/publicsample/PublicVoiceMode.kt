@@ -6,4 +6,3 @@ enum class PublicVoiceMode {
     CLONE,
     LOCAL_PACK,
 }
-

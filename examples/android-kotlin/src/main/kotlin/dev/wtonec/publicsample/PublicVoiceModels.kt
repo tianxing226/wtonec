@@ -29,4 +29,3 @@ data class PublicGenerationState(
     val progress: Float = 0f,
     val message: String? = null,
 )
-
