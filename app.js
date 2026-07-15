@@ -231,4 +231,3 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
     secondary.style.transform = "rotate(-5deg)";
   });
 }
-

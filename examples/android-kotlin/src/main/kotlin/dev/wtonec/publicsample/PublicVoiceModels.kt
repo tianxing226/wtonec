@@ -30,4 +30,3 @@ data class PublicGenerationState(
     val message: String? = null,
 )
 
-
