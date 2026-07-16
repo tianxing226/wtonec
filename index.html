@@ -18,6 +18,7 @@
       <span class="brand-name">Wtonec</span>
     </a>
     <nav class="site-nav" aria-label="页面导航">
+      <a href="#quickstart">教程</a>
       <a href="#features">能力</a>
       <a href="#showcase">界面</a>
       <a href="#pipeline">流程</a>
@@ -72,9 +73,56 @@
       </div>
     </section>
 
+    <section class="section section-features" id="quickstart" aria-labelledby="quickstart-title">
+      <div class="section-heading reveal">
+        <p class="eyebrow">QUICK START / 01</p>
+        <h2 id="quickstart-title">六步开始使用 Wtonec</h2>
+        <p>从安装模块到发送第一条语音，按下面顺序完成一次即可。在线生成需要自己的 Tiax API Key，本地语音包可直接使用。</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card feature-card-blue reveal">
+          <span class="feature-index">01</span>
+          <h3>安装并启用</h3>
+          <p>从 <a href="https://github.com/tianxing226/wtonec/releases" target="_blank" rel="noreferrer">Releases</a> 下载 APK。进入 LSPosed 启用 Wtonec，并在作用域中勾选微信 <code>com.tencent.mm</code>。</p>
+          <div class="feature-meta"><span>安装 APK</span><span>启用模块</span><span>勾选微信</span></div>
+        </article>
+        <article class="feature-card feature-card-lime reveal">
+          <span class="feature-index">02</span>
+          <h3>完成 DEX 匹配</h3>
+          <p>结束微信进程后重新打开。首次启动按弹窗提示开始匹配，全部成功后再完整重启一次微信，后续将直接读取缓存。</p>
+          <div class="feature-meta"><span>首次启动</span><span>开始匹配</span><span>重启微信</span></div>
+        </article>
+        <article class="feature-card feature-card-dark reveal">
+          <span class="feature-index">03</span>
+          <h3>注册获取 Key</h3>
+          <p>访问 <a href="https://www.tiax.pw/" target="_blank" rel="noreferrer">Tiax 官网</a> 注册账号，登录 <a href="https://www.tiax.pw/user/" target="_blank" rel="noreferrer">用户中心</a>，在 API 密钥管理区域获取自己的 Key。</p>
+          <div class="feature-meta"><span>注册</span><span>用户中心</span><span>API Key</span></div>
+        </article>
+        <article class="feature-card feature-card-coral reveal">
+          <span class="feature-index">04</span>
+          <h3>长按打开面板</h3>
+          <p>进入私聊或群聊，把微信输入栏切换到语音模式，然后长按“按住说话”按钮，即可打开“预设 / 克隆 / 语音包 / 设置”面板。</p>
+          <div class="feature-meta"><span>聊天页面</span><span>语音模式</span><span>持续长按</span></div>
+        </article>
+        <article class="feature-card feature-card-blue reveal">
+          <span class="feature-index">05</span>
+          <h3>保存 Key</h3>
+          <p>打开面板“设置”，把自己的 Key 粘贴到 Tiax API Key 输入框并保存。返回“预设”，输入文字并选择一个音色。</p>
+          <div class="feature-meta"><span>设置</span><span>粘贴 Key</span><span>保存</span></div>
+        </article>
+        <article class="feature-card feature-card-lime reveal">
+          <span class="feature-index">06</span>
+          <h3>生成并发送</h3>
+          <p>点击“试听”检查效果，或点击“生成并发送”发送到面板顶部显示的当前会话。克隆页使用 Fish Audio 音色 ID，语音包页可导入 MP3。</p>
+          <div class="feature-meta"><span>试听</span><span>生成</span><span>发送当前会话</span></div>
+        </article>
+      </div>
+    </section>
+
     <section class="section section-features" id="features" aria-labelledby="features-title">
       <div class="section-heading reveal">
-        <p class="eyebrow">CORE CAPABILITIES / 01</p>
+        <p class="eyebrow">CORE CAPABILITIES / 02</p>
         <h2 id="features-title">四条路径，一个发送动作</h2>
         <p>从输入文字到发送当前会话，Wtonec 把选音色、生成、试听、缓存与格式转换组织成连续工作流。</p>
       </div>
@@ -109,7 +157,7 @@
 
     <section class="workbench-band" aria-labelledby="workbench-title">
       <div class="workbench-copy reveal">
-        <p class="eyebrow">INTERACTIVE PREVIEW / 02</p>
+        <p class="eyebrow">INTERACTIVE PREVIEW / 03</p>
         <h2 id="workbench-title">让一句话拥有不同声音</h2>
         <p>切换生成模式，输入一段文字，查看音频处理过程的界面反馈。</p>
       </div>
@@ -143,7 +191,7 @@
 
     <section class="section section-showcase" id="showcase" aria-labelledby="showcase-title">
       <div class="section-heading reveal">
-        <p class="eyebrow">REAL INTERFACE / 03</p>
+        <p class="eyebrow">REAL INTERFACE / 04</p>
         <h2 id="showcase-title">真实界面，不是概念图</h2>
         <p>主页、设置、安全与关于页面均来自 Wtonec 实机截图，界面状态可直接对照当前构建。</p>
       </div>
@@ -180,7 +228,7 @@
 
     <section class="pipeline-band" id="pipeline" aria-labelledby="pipeline-title">
       <div class="pipeline-heading reveal">
-        <p class="eyebrow">AUDIO PIPELINE / 04</p>
+        <p class="eyebrow">AUDIO PIPELINE / 05</p>
         <h2 id="pipeline-title">从文本到微信语音</h2>
       </div>
       <ol class="pipeline" aria-label="Wtonec 音频处理流程">
@@ -194,7 +242,7 @@
 
     <section class="storage-band" id="storage" aria-labelledby="storage-title">
       <div class="storage-copy reveal">
-        <p class="eyebrow">LOCAL DATA / 05</p>
+        <p class="eyebrow">LOCAL DATA / 06</p>
         <h2 id="storage-title">数据位置，清楚可查</h2>
         <p>语音包、音色元数据、DEX 缓存和日志均按明确目录组织。Android 11+ 会限制普通文件管理器访问 Android/data，日常维护优先使用应用内导入、导出和清理入口。</p>
         <p>跨设备或微信实例迁移时先导出 MP3 和记录自定义音色，再由目标环境重建路径与索引。</p>
@@ -220,7 +268,7 @@
         <img src="assets/wtonec-security.jpg" alt="Wtonec 安全页面实机截图">
       </div>
       <div class="security-copy reveal">
-        <p class="eyebrow">SECURITY FRAMEWORK / 06</p>
+        <p class="eyebrow">SECURITY FRAMEWORK / 07</p>
         <h2 id="security-title">安全能力，按真实进度呈现</h2>
         <p class="security-lead">当前版本已经建立安全页、状态模型与扩展接口；Hook 环境、模块清单、进程信号、权限与数据访问风险扫描仍处于待开发状态。</p>
         <ul class="security-list">
