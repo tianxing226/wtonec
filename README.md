@@ -104,7 +104,7 @@ Android 11 及以上版本会限制普通文件管理器访问 `Android/data`。
 
 ## Release 与文件校验
 
-当前公开版本：[Wtonec v1.1.0 (669)](https://github.com/Xposed-Modules-Repo/dev.wtonec/releases/tag/v1.1.0)
+当前公开版本：[Wtonec v1.1.0 (669)](https://github.com/Xposed-Modules-Repo/dev.wtonec/releases/tag/669-1.1.0)
 
 - 文件：`Wtonec-v1.1.0-vc669-standard-universal-release-hardened.apk`
 - applicationId：`dev.wtonec`
