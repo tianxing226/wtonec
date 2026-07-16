@@ -1,5 +1,6 @@
 const LINKS = Object.freeze({
   github: "https://github.com/tianxing226/wtonec",
+  xposed: "https://github.com/Xposed-Modules-Repo/dev.wtonec",
   docs: "https://github.com/tianxing226/wtonec/tree/main/docs",
   storage: "https://github.com/tianxing226/wtonec/blob/main/docs/STORAGE.md",
   samples: "https://github.com/tianxing226/wtonec/tree/main/examples/android-kotlin",

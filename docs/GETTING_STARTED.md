@@ -5,14 +5,14 @@
 - Android 9（API 28）及以上设备。
 - 已安装并正常运行 LSPosed。
 - 已安装兼容的微信，标准包名为 `com.tencent.mm`。
-- 已从 [Wtonec Releases](https://github.com/tianxing226/wtonec/releases) 获取 APK。
+- 已从 [Xposed 官方 Releases](https://github.com/Xposed-Modules-Repo/dev.wtonec/releases) 获取 APK。
 - 在线生成语音时具有可用网络和自己的 Tiax API Key。
 
 多开、工作资料或修改包名版本的微信会使用各自包名、作用域和数据目录。后续文档以标准微信为例。
 
 ## 安装 APK
 
-1. 打开下载的 `app-standard-universal-release.apk`。
+1. 打开下载的 `Wtonec-v1.1.0-vc669-standard-universal-release-hardened.apk`。
 2. 按系统提示完成安装。
 3. 在 Wtonec 独立主页核对版本号、构建身份和模块状态。
 4. 如需校验文件，参考根 README 中公布的 SHA-256。

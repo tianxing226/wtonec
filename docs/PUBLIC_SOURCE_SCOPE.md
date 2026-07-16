@@ -2,7 +2,7 @@
 
 ## 仓库定位
 
-本仓库是 Wtonec 的独立公开项目仓库，内容包括功能介绍页、使用文档、实机截图、Release 和少量独立 Kotlin 样例。
+`tianxing226/wtonec` 是 Wtonec 的主项目资料仓库；`Xposed-Modules-Repo/dev.wtonec` 是官方模块收录与 APK 分发仓库。公开内容包括功能介绍页、使用文档、实机截图、Release 和少量独立 Kotlin 样例。
 
 仓库根目录当前没有 `LICENSE` 或 `NOTICE` 文件。公开样例为重新整理的独立实现，没有复制第三方项目代码，也没有新增第三方依赖。
 
