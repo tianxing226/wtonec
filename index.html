@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#05A5FA">
-  <meta name="description" content="Wtonec 独立 Android LSPosed/Xposed 微信模块：文字转语音、Fish Audio 自定义音色、本地语音包与微信语音发送。">
+  <meta name="description" content="Wtonec Android LSPosed/Xposed 微信语音模块：Fish Audio、轻颜、系统 TTS、本地语音包与微信语音发送。">
   <title>Wtonec · 微信语音工作台</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%2305A5FA'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial' font-size='28' font-weight='700' fill='white'%3EWT%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
@@ -39,10 +39,10 @@
       </div>
 
       <div class="hero-content">
-        <p class="hero-kicker"><span></span> Android · LSPosed · Fish Audio</p>
+        <p class="hero-kicker"><span></span> Android · LSPosed · System TTS</p>
         <h1 id="hero-title">Wtonec</h1>
         <p class="hero-lead">把文字，变成可以直接发送到微信会话的语音。</p>
-        <p class="hero-copy">独立维护的 Android 微信语音工具，把预设音色、克隆音色、本地语音包与 MP3 → SILK 转换集中在一个长按即可唤起的面板中。</p>
+        <p class="hero-copy">把 Fish Audio、轻颜、系统 TTS、本地语音包与微信语音格式处理集中在一个长按即可唤起的面板中。</p>
         <div class="hero-actions" aria-label="项目入口">
           <a class="button button-lime" data-link="github" href="https://github.com/tianxing226/wtonec" target="_blank" rel="noreferrer">
             <span>项目仓库</span><span aria-hidden="true">↗</span>
@@ -67,7 +67,8 @@
       <div class="signal-track">
         <span>文字转微信语音</span><b>+</b>
         <span>预设音色快速切换</span><b>+</b>
-        <span>Fish Audio 自定义音色</span><b>+</b>
+        <span>Fish Audio 与轻颜音色</span><b>+</b>
+        <span>Android 系统 TTS</span><b>+</b>
         <span>本地语音包</span><b>+</b>
         <span>MP3 / SILK 音频链</span>
       </div>
@@ -77,7 +78,7 @@
       <div class="section-heading reveal">
         <p class="eyebrow">QUICK START / 01</p>
         <h2 id="quickstart-title">六步开始使用 Wtonec</h2>
-        <p>从安装模块到发送第一条语音，按下面顺序完成一次即可。在线生成需要自己的 Tiax API Key，本地语音包可直接使用。</p>
+        <p>从安装到发送第一条语音，按下面顺序完成一次即可。Fish Audio 与轻颜需要自己的 Tiax API Key；系统 TTS 和本地语音包无需 Key。</p>
       </div>
 
       <div class="feature-grid">
@@ -107,14 +108,14 @@
         </article>
         <article class="feature-card feature-card-blue reveal">
           <span class="feature-index">05</span>
-          <h3>保存 Key</h3>
-          <p>打开面板“设置”，把自己的 Key 粘贴到 Tiax API Key 输入框并保存。返回“预设”，输入文字并选择一个音色。</p>
-          <div class="feature-meta"><span>设置</span><span>粘贴 Key</span><span>保存</span></div>
+          <h3>选择语音来源</h3>
+          <p>Fish Audio 或轻颜用户在“设置”中保存自己的 Key；系统 TTS 和本地语音包可以直接使用。</p>
+          <div class="feature-meta"><span>Fish</span><span>轻颜</span><span>系统 TTS</span></div>
         </article>
         <article class="feature-card feature-card-lime reveal">
           <span class="feature-index">06</span>
           <h3>生成并发送</h3>
-          <p>点击“试听”检查效果，或点击“生成并发送”发送到面板顶部显示的当前会话。克隆页使用 Fish Audio 音色 ID，语音包页可导入 MP3。</p>
+          <p>输入文字并点击“试听”或“生成并发送”。发送前确认面板顶部显示的是目标会话。</p>
           <div class="feature-meta"><span>试听</span><span>生成</span><span>发送当前会话</span></div>
         </article>
       </div>
@@ -130,15 +131,15 @@
       <div class="feature-grid">
         <article class="feature-card feature-card-blue reveal">
           <span class="feature-index">01</span>
-          <h3>预设音色</h3>
-          <p>搜索、收藏和快速切换音色，通过预设参数生成语音，适合高频使用。</p>
-          <div class="feature-meta"><span>搜索</span><span>收藏</span><span>试听</span></div>
+          <h3>在线音色</h3>
+          <p>搜索、收藏和快速切换 Fish Audio 或轻颜音色，也可管理 Fish Audio 克隆音色 ID。</p>
+          <div class="feature-meta"><span>Fish</span><span>轻颜</span><span>克隆</span></div>
         </article>
         <article class="feature-card feature-card-lime reveal">
           <span class="feature-index">02</span>
-          <h3>克隆音色</h3>
-          <p>保存多个 Fish Audio 音色 ID，在自定义列表中直接选择并生成。</p>
-          <div class="feature-meta"><span>多音色</span><span>自定义</span><span>管理</span></div>
+          <h3>系统 TTS</h3>
+          <p>使用 Android 当前默认语音引擎，支持语速与音调调节，不依赖音色列表或 API Key。</p>
+          <div class="feature-meta"><span>本地</span><span>无需 Key</span><span>语速音调</span></div>
         </article>
         <article class="feature-card feature-card-dark reveal">
           <span class="feature-index">03</span>
@@ -270,13 +271,13 @@
       <div class="security-copy reveal">
         <p class="eyebrow">SECURITY FRAMEWORK / 07</p>
         <h2 id="security-title">安全能力，按真实进度呈现</h2>
-        <p class="security-lead">当前版本已经建立安全页、状态模型与扩展接口；Hook 环境、模块清单、进程信号、权限与数据访问风险扫描仍处于待开发状态。</p>
+        <p class="security-lead">安全页可读取设备当前可见的微信作用域、模块包、进程与配置证据，并在本地生成报告。结果受系统权限、Root 状态和 LSPosed 可见性影响。</p>
         <ul class="security-list">
           <li><span></span>API Key 通过 Android Keystore 加密保存</li>
           <li><span></span>构建身份与 DEX 缓存状态可追踪</li>
-          <li><span></span>扫描页面不输出虚假的评分或结论</li>
+          <li><span></span>扫描数据与导出报告仅保存在本地</li>
         </ul>
-        <div class="security-status"><i aria-hidden="true"></i><span>框架已就绪 · 扫描能力待开发</span></div>
+        <div class="security-status"><i aria-hidden="true"></i><span>本地证据扫描 · 结果仅供设备排查</span></div>
       </div>
     </section>
 

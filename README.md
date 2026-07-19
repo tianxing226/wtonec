@@ -1,156 +1,64 @@
 # Wtonec
 
-Wtonec 是独立维护的 Android 微信语音工具。它在微信聊天页提供文字转语音、Fish Audio 自定义音色、本地语音包管理，以及面向当前会话的语音生成和发送流程。
+Wtonec 是用于微信 `com.tencent.mm` 的 Android LSPosed/Xposed 语音模块。进入聊天页后，长按微信语音按钮即可打开语音面板。
 
-本仓库是 Wtonec 的主项目资料仓库，用于发布功能介绍页、使用文档、实机截图、Release 和 4 个独立 Kotlin 样例。Xposed Modules Repo 中的 `dev.wtonec` 仓库用于官方模块收录与 APK 分发；两处公开仓库均不包含正式模块的私有实现。
+> 官网：[tianxing226.github.io/wtonec](https://tianxing226.github.io/wtonec/)<br>
+> 下载：[Xposed 官方 Releases](https://github.com/Xposed-Modules-Repo/dev.wtonec/releases)
 
+## 快速开始
 
-> **官方网站：** [https://tianxing226.github.io/wtonec/](https://tianxing226.github.io/wtonec/)
+1. 下载并安装最新的 Hardened Universal APK。
+2. 在 LSPosed 中启用 Wtonec，并勾选微信 `com.tencent.mm`。
+3. 完全结束微信进程后重新打开；首次启动按提示完成 DEX 匹配，再重启一次微信。
+4. 进入私聊或群聊，将输入栏切换到语音模式，长按微信语音按钮打开 Wtonec。
+5. 输入文字，选择语音来源，试听或直接发送到当前聊天。
 
-## 快速使用教程
+## 语音来源
 
-1. **安装并启用模块**：从 [Wtonec Releases](https://github.com/tianxing226/wtonec/releases) 下载 APK 并安装；打开 LSPosed，启用 Wtonec，并在作用域中勾选微信 `com.tencent.mm`。
-2. **重新启动微信**：从最近任务划掉微信并结束微信进程，然后重新打开。首次使用或微信版本变化时，按弹窗提示完成 DEX 匹配；显示成功后再完整重启一次微信。
-3. **注册并获取 Key**：访问 [Tiax 官网](https://www.tiax.pw/) 注册账号，登录 [Tiax 用户中心](https://www.tiax.pw/user/) 后，在 API 密钥管理区域获取自己的 Key。接口状态与计费以 [实时接口页面](https://www.tiax.pw/api_details.php?id=7) 为准。
-4. **打开语音面板**：进入任意私聊或群聊，在微信输入栏中**长按左侧的“语音”按钮**，即可打开 Wtonec 的“预设 / 克隆 / 语音包 / 设置”面板。普通点击或微信原有录音操作保持原行为。
-5. **保存 Key**：进入面板“设置”，将自己的 Key 粘贴到 `Tiax API Key` 输入框并保存。未配置 Key 时，预设和克隆音色的在线生成功能保持停用。
-6. **生成并发送**：在“预设”页输入文字、搜索并选择音色，然后点击“试听”或“生成并发送”；发送前确认面板顶部显示的是目标聊天。
-7. **克隆音色与语音包**：“克隆”页可保存 Fish Audio 音色 ID；“语音包”页可导入 MP3、试听、重命名、导出或直接发送。本地语音包发送不依赖在线 Key。
+| 来源 | 用途 | 是否需要 Tiax API Key |
+|---|---|---|
+| Fish Audio | 预设音色、试听和克隆音色 | 是 |
+| 轻颜免费 | 在线音色生成 | 是 |
+| 系统 TTS | 使用 Android 当前默认语音引擎 | 否 |
+| 本地语音包 | 导入、保存、试听和发送 MP3 | 否 |
 
-更完整的安装、使用和排错说明分别见 [首次启动](docs/GETTING_STARTED.md)、[功能教程](docs/USAGE.md) 和 [故障排查](docs/TROUBLESHOOTING.md)。
+Key 获取：访问 [Tiax 官网](https://www.tiax.pw/) 注册并登录 [Tiax 用户中心](https://www.tiax.pw/user/)，然后在 Wtonec“设置”中保存自己的 Key。系统 TTS 与本地语音包不读取 Key。
 
-## 项目入口
+## 主要功能
 
-- [功能介绍页](https://tianxing226.github.io/wtonec/)
-- [完整文档](docs/README.md)
-- [数据目录说明](docs/STORAGE.md)
-- [公开 Kotlin 样例](examples/android-kotlin/README.md)
-- [Xposed 官方仓库](https://github.com/Xposed-Modules-Repo/dev.wtonec)
-- [Xposed 官方 Releases](https://github.com/Xposed-Modules-Repo/dev.wtonec/releases)
-- [项目归档 Releases](https://github.com/tianxing226/wtonec/releases)
-- [Xposed 仓库与同步说明](docs/XPOSED_REPOSITORY.md)
-- [Tiax API 服务](https://www.tiax.pw/)
+- Fish Audio 预设、试听、收藏和自定义音色 ID。
+- 轻颜免费音色与 Android 系统 TTS。
+- 文本模板、语气标签、语速和音调调节。
+- 本地语音包导入、保存、重命名、导出和发送。
+- 将收到的微信语音保存到 Wtonec 语音包。
+- 液态玻璃、Miuix 浅色和 AMOLED 深色面板。
+- DEX 缓存适配、运行日志和本地安全证据扫描。
 
-## 功能概览
+安全扫描只读取设备当前可见的本地证据，结果受 Android 权限、Root 状态和 LSPosed 可见性影响；报告保存在用户选择的位置，不上传扫描数据。
 
-- **预设音色**：搜索、选择和试听服务方音色，输入文字后生成 MP3 或直接发送到当前聊天。
-- **克隆音色**：保存多个 Fish Audio 音色 ID，自定义名称并快速切换。
-- **本地语音包**：导入 MP3，执行试听、搜索、排序、重命名、删除、导出和发送。
-- **微信内面板**：在私聊或群聊中长按微信语音按钮打开“预设 / 克隆 / 语音包 / 设置”面板。
-- **本地音频处理**：接口返回 MP3 后，在设备上生成微信语音发送所需的数据。
-- **状态与诊断**：显示模块激活、DEX 匹配、构建身份、运行日志和崩溃诊断状态。
+## 当前版本
 
-## 运行环境
-
-| 项目 | 要求 |
-|---|---|
-| Android | Android 9（API 28）及以上 |
-| 模块环境 | 已正常运行的 LSPosed 环境 |
-| 作用域 | 微信，标准包名为 `com.tencent.mm` |
-| 网络 | 文字转语音时需要访问接口服务 |
-| API Key | 使用者从 Tiax 用户中心获取并自行配置 |
-
-Wtonec 通过 DEX 匹配适配微信内部版本变化。微信升级、降级或热更新后，首次启动可能重新执行匹配。
-
-## 安装与首次启动
-
-1. 从 [Xposed 官方 Releases](https://github.com/Xposed-Modules-Repo/dev.wtonec/releases) 下载 APK 并安装。
-2. 打开 LSPosed，在模块列表中启用 Wtonec。
-3. 进入模块作用域并勾选微信。
-4. 从最近任务划掉微信；必要时在系统应用信息中结束微信进程。
-5. 重新打开微信，等待首次 DEX 匹配完成。
-6. 进入私聊或群聊，将输入区切换到语音模式。
-7. 长按输入栏中的微信语音按钮，确认 Wtonec 面板出现。
-8. 打开面板“设置”，填写自己的 Tiax API Key 并保存。
-
-DEX 匹配成功后，后续冷启动会回读缓存。完整安装检查见 [GETTING_STARTED.md](docs/GETTING_STARTED.md)。
-
-## 三种语音工作流
-
-### 预设音色
-
-在“预设”页输入不超过 500 字的文本，搜索并选择音色，然后试听、生成或生成并发送。接口价格、音色数量和服务状态以 [实时接口详情](https://www.tiax.pw/api_details.php?id=7) 为准。
-
-### 克隆音色
-
-在“克隆”页添加 Fish Audio 音色 ID 和显示名称。Wtonec 会保存多个自定义条目，生成时通过 `kl` 参数选择对应音色。
-
-### 本地语音包
-
-在“语音包”页通过 Android 系统文件选择器导入 MP3。单个导入文件上限为 20 MiB；导入完成后，Wtonec 保存 MP3、微信语音数据和索引。重要音频可通过导出功能另存为 MP3。
-
-完整操作见 [USAGE.md](docs/USAGE.md)。
-
-## 数据目录
-
-标准微信对应的 Wtonec 主目录为：
-
-```text
-/storage/emulated/0/Android/data/com.tencent.mm/Wtonec/
-```
-
-确认存在的主要目录如下：
-
-| 目录 | 用途 |
-|---|---|
-| `wtonec/voices/` | 已保存或导入的 MP3 与微信语音数据 |
-| `wtonec/metadata/` | 音色目录、自定义音色和语音包索引 |
-| `dex_cache/` | 微信版本指纹、DEX 匹配结果和诊断摘要 |
-| `logs/` | `Wtonec-yyyy-MM-dd.log` 运行日志 |
-| `crashes/` | Java 与 native 崩溃诊断文件 |
-
-生成任务缓存位于：
-
-```text
-/storage/emulated/0/Android/data/com.tencent.mm/cache/Wtonec/wtonec-jobs/
-```
-
-Android 11 及以上版本会限制普通文件管理器访问 `Android/data`。日常管理优先使用应用内导入、导出、日志和清理功能。精确文件类型、备份顺序、ADB 示例和清理影响见 [STORAGE.md](docs/STORAGE.md)。
-
-## API Key 与隐私
-
-生成语音时，输入文字 `msg`、预设音色 `ys` 或克隆音色 `kl`，以及 `apikey` 会发送到 Tiax 接口。API Key 使用 Android Keystore 支持的 AES/GCM 加密后保存，不写入上述外部数据目录。
-
-日志、语音索引和崩溃信息可能包含文本预览、音色名称、文件路径、微信版本和功能阶段。分享诊断材料前，应遮盖 API Key、账号、联系人、会话标识、输入文字和本地路径。详见 [PRIVACY.md](docs/PRIVACY.md)。
-
-## 安全页状态
-
-当前安全页展示状态模型和扩展接口。Hook 环境、模块清单、进程信号、权限和数据访问风险等扫描执行逻辑处于后续开发阶段，页面不生成虚假的模块列表、安全评分或风险结论。
-
-## Release 与文件校验
-
-当前公开版本：[Wtonec v1.1.0 (669)](https://github.com/Xposed-Modules-Repo/dev.wtonec/releases/tag/669-1.1.0)
-
-- 文件：`Wtonec-v1.1.0-vc669-standard-universal-release-hardened.apk`
+- 版本：`1.3.2`（`673`）
 - applicationId：`dev.wtonec`
-- versionCode：`669`
+- 文件：`Wtonec-v1.3.2-vc673-standard-universal-release-hardened.apk`
 - ABI：`arm64-v8a`、`armeabi-v7a`
-- APK SHA-256：`8EFB69EBC682ABBB7EF16282AA0726C0F5D49ECF53246E1C0D8DC214820B9348`
+- SHA-256：`6DEB493E4B18CF9540569E69C53BDD8C44843A86EB2A5483A95E6E722222A212`
 - 签名证书 SHA-256：`BFC2894D0996204A0B6A629C4F9020116098ED7EAF22DD27391051B5BAB704E9`
-- 项目归档：[tianxing226/wtonec v1.1.0](https://github.com/tianxing226/wtonec/releases/tag/v1.1.0)
 
-Windows 校验命令：
+Windows 校验：
 
 ```powershell
-Get-FileHash .\Wtonec-v1.1.0-vc669-standard-universal-release-hardened.apk -Algorithm SHA256
+Get-FileHash .\Wtonec-v1.3.2-vc673-standard-universal-release-hardened.apk -Algorithm SHA256
 ```
 
-## 实机界面
+## 文档
 
-<p>
-  <img src="assets/wtonec-home.jpg" alt="Wtonec 主页：模块和语音功能状态" width="230">
-  <img src="assets/wtonec-settings.jpg" alt="Wtonec 设置页：宿主、DEX 缓存和模块选项" width="230">
-  <img src="assets/wtonec-security.jpg" alt="Wtonec 安全页：扫描框架开发状态" width="230">
-  <img src="assets/wtonec-about.jpg" alt="Wtonec 关于页：版本、说明和构建信息" width="230">
-</p>
+- [安装与首次启动](docs/GETTING_STARTED.md)
+- [功能使用](docs/USAGE.md)
+- [API Key](docs/API_KEY.md)
+- [常见问题](docs/TROUBLESHOOTING.md)
+- [数据目录](docs/STORAGE.md)
+- [隐私说明](docs/PRIVACY.md)
+- [使用说明](docs/DISCLAIMER.md)
 
-## 获取帮助
-
-- 安装、激活和首次 DEX：[GETTING_STARTED.md](docs/GETTING_STARTED.md)
-- API Key 获取与配置：[API_KEY.md](docs/API_KEY.md)
-- 功能使用：[USAGE.md](docs/USAGE.md)
-- 数据、备份与清理：[STORAGE.md](docs/STORAGE.md)
-- 故障排查：[TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)
-- 使用说明与责任边界：[DISCLAIMER.md](docs/DISCLAIMER.md)
-- 公开样例边界：[PUBLIC_SOURCE_SCOPE.md](docs/PUBLIC_SOURCE_SCOPE.md)
-- Xposed 官方仓库：[XPOSED_REPOSITORY.md](docs/XPOSED_REPOSITORY.md)
+本公开仓库仅提供项目介绍、使用文档、截图和独立样例。正式模块的 Hook、DEX、音频发送、JNI/Rust 与加固实现不在公开源码范围内。
