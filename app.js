@@ -1,6 +1,7 @@
 const LINKS = Object.freeze({
   github: "https://github.com/tianxing226/wtonec",
   xposed: "https://github.com/Xposed-Modules-Repo/dev.wtonec",
+  release: "https://github.com/Xposed-Modules-Repo/dev.wtonec/releases/tag/680-1.5.4",
   docs: "https://github.com/tianxing226/wtonec/tree/main/docs",
   storage: "https://github.com/tianxing226/wtonec/blob/main/docs/STORAGE.md",
   samples: "https://github.com/tianxing226/wtonec/tree/main/examples/android-kotlin",
@@ -10,9 +11,9 @@ const SCREENS = Object.freeze({
   home: {
     src: "assets/wtonec-home.jpg",
     alt: "Wtonec 主页实机截图",
-    eyebrow: "运行状态",
-    title: "一眼确认模块与语音功能",
-    description: "展示 LSPosed 激活状态、语音入口以及 TG、官网和项目链接。",
+    eyebrow: "运行状态 · 微信 / QQ",
+    title: "一眼确认双宿主模块状态",
+    description: "展示 LSPosed 激活状态、微信与 QQ 入口以及项目链接。",
     accent: "#05A5FA",
     caption: "Wtonec 主页",
   },
@@ -20,8 +21,8 @@ const SCREENS = Object.freeze({
     src: "assets/wtonec-settings.jpg",
     alt: "Wtonec 设置页实机截图",
     eyebrow: "DEX 与宿主",
-    title: "配置与维护集中呈现",
-    description: "宿主包、桌面入口、DEX 缓存与模块维护状态位于同一设置页。",
+    title: "配置与双宿主维护集中呈现",
+    description: "微信/QQ 宿主包、WT 入口、DEX 缓存与模块维护状态位于同一设置页。",
     accent: "#D3FFAF",
     caption: "Wtonec 设置页",
   },
@@ -106,7 +107,7 @@ modeButtons.forEach((button) => {
       candidate.setAttribute("aria-pressed", String(selected));
     });
     modeStatus.textContent = button.dataset.mode;
-    generationStatus.textContent = `已切换至${button.dataset.mode}`;
+    generationStatus.textContent = `已切换至${button.dataset.mode} · 微信 / QQ`;
   });
 });
 
@@ -126,7 +127,7 @@ generateButton.addEventListener("click", () => {
   generationTimer = window.setTimeout(() => {
     workbench.classList.remove("is-generating");
     generateButton.disabled = false;
-    generationStatus.textContent = "演示完成 · MP3 → SILK → 当前会话";
+    generationStatus.textContent = "演示完成 · MP3 → Tencent SILK → 当前宿主会话";
     waveformBars.forEach((bar, index) => {
       const height = 16 + ((index * 29 + voiceText.value.length * 3) % 68);
       bar.style.setProperty("--bar-height", `${height}%`);

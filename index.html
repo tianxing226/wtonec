@@ -4,8 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#05A5FA">
-  <meta name="description" content="Wtonec Android LSPosed/Xposed 微信语音模块：Fish Audio、轻颜、系统 TTS、本地语音包与微信语音发送。">
-  <title>Wtonec · 微信语音工作台</title>
+  <meta name="description" content="Wtonec Android LSPosed/Xposed 微信与 QQ 双宿主语音模块：文字转语音、Fish Audio、系统 TTS、在线与本地语音包。">
+  <meta name="keywords" content="Wtonec,微信模块,QQ模块,LSPosed,Xposed,文字转语音,Fish Audio,语音包,Tencent SILK">
+  <title>Wtonec · 微信 / QQ 双宿主语音工作台</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%2305A5FA'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial' font-size='28' font-weight='700' fill='white'%3EWT%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -39,22 +40,22 @@
       </div>
 
       <div class="hero-content">
-        <p class="hero-kicker"><span></span> Android · LSPosed · System TTS</p>
+        <p class="hero-kicker"><span></span> v1.5.4 · Android · LSPosed · WeChat / QQ</p>
         <h1 id="hero-title">Wtonec</h1>
-        <p class="hero-lead">把文字，变成可以直接发送到微信会话的语音。</p>
-        <p class="hero-copy">把 Fish Audio、轻颜、系统 TTS、本地语音包与微信语音格式处理集中在一个长按即可唤起的面板中。</p>
+        <p class="hero-lead">把文字，变成可以发送到微信或 QQ 会话的语音。</p>
+        <p class="hero-copy">一个 APK 覆盖微信模块与 QQ 模块，把 Fish Audio、系统 TTS、在线目录、本地语音包和 Tencent SILK 处理集中在同一套聊天面板中。</p>
         <div class="hero-actions" aria-label="项目入口">
-          <a class="button button-lime" data-link="github" href="https://github.com/tianxing226/wtonec" target="_blank" rel="noreferrer">
-            <span>项目仓库</span><span aria-hidden="true">↗</span>
+          <a class="button button-lime" data-link="release" href="https://github.com/tianxing226/wtonec/releases/tag/v1.5.4" target="_blank" rel="noreferrer">
+            <span>下载 v1.5.4</span><span aria-hidden="true">↗</span>
           </a>
           <a class="button button-blue" data-link="docs" href="https://github.com/tianxing226/wtonec/tree/main/docs" target="_blank" rel="noreferrer">
             <span>项目文档</span><span aria-hidden="true">↗</span>
           </a>
         </div>
         <div class="hero-facts" aria-label="技术标签">
-          <span>微信内面板</span>
+          <span>微信 / QQ 双宿主</span>
           <span>本地 SILK 编码</span>
-          <span>API Key 加密存储</span>
+          <span>共享配置与语音库</span>
         </div>
       </div>
 
@@ -65,7 +66,8 @@
 
     <section class="signal-band" aria-label="Wtonec 能力摘要">
       <div class="signal-track">
-        <span>文字转微信语音</span><b>+</b>
+        <span>微信模块 + QQ 模块</span><b>+</b>
+        <span>文字转宿主语音</span><b>+</b>
         <span>预设音色快速切换</span><b>+</b>
         <span>Fish Audio 与轻颜音色</span><b>+</b>
         <span>Android 系统 TTS</span><b>+</b>
@@ -85,14 +87,14 @@
         <article class="feature-card feature-card-blue reveal">
           <span class="feature-index">01</span>
           <h3>安装并启用</h3>
-          <p>从 <a href="https://github.com/tianxing226/wtonec/releases" target="_blank" rel="noreferrer">Releases</a> 下载 APK。进入 LSPosed 启用 Wtonec，并在作用域中勾选微信 <code>com.tencent.mm</code>。</p>
-          <div class="feature-meta"><span>安装 APK</span><span>启用模块</span><span>勾选微信</span></div>
+          <p>从 <a href="https://github.com/tianxing226/wtonec/releases/tag/v1.5.4" target="_blank" rel="noreferrer">v1.5.4 Release</a> 下载 APK。进入 LSPosed 启用 Wtonec，按需勾选微信 <code>com.tencent.mm</code>、QQ <code>com.tencent.mobileqq</code>。</p>
+          <div class="feature-meta"><span>安装 APK</span><span>微信作用域</span><span>QQ 作用域</span></div>
         </article>
         <article class="feature-card feature-card-lime reveal">
           <span class="feature-index">02</span>
           <h3>完成 DEX 匹配</h3>
-          <p>结束微信进程后重新打开。首次启动按弹窗提示开始匹配，全部成功后再完整重启一次微信，后续将直接读取缓存。</p>
-          <div class="feature-meta"><span>首次启动</span><span>开始匹配</span><span>重启微信</span></div>
+          <p>完整结束目标宿主后重新打开。微信与 QQ 分别完成自己的 DEX 匹配，成功后再重启对应宿主，后续直接读取独立缓存。</p>
+          <div class="feature-meta"><span>宿主隔离</span><span>开始匹配</span><span>回读缓存</span></div>
         </article>
         <article class="feature-card feature-card-dark reveal">
           <span class="feature-index">03</span>
@@ -102,9 +104,9 @@
         </article>
         <article class="feature-card feature-card-coral reveal">
           <span class="feature-index">04</span>
-          <h3>长按打开面板</h3>
-          <p>进入私聊或群聊，把微信输入栏切换到语音模式，然后长按“按住说话”按钮，即可打开“预设 / 克隆 / 语音包 / 设置”面板。</p>
-          <div class="feature-meta"><span>聊天页面</span><span>语音模式</span><span>持续长按</span></div>
+          <h3>在聊天页打开面板</h3>
+          <p>微信可长按语音按钮或点击 WT 入口；QQ NT 使用聊天页 WT 入口或已适配的语音入口，打开同一套“预设 / 克隆 / 语音包 / 设置”面板。</p>
+          <div class="feature-meta"><span>微信长按</span><span>QQ AIO</span><span>WT 入口</span></div>
         </article>
         <article class="feature-card feature-card-blue reveal">
           <span class="feature-index">05</span>
@@ -115,8 +117,8 @@
         <article class="feature-card feature-card-lime reveal">
           <span class="feature-index">06</span>
           <h3>生成并发送</h3>
-          <p>输入文字并点击“试听”或“生成并发送”。发送前确认面板顶部显示的是目标会话。</p>
-          <div class="feature-meta"><span>试听</span><span>生成</span><span>发送当前会话</span></div>
+          <p>输入文字并点击“试听”或“生成并发送”。发送前确认面板顶部显示正确的宿主、账号和目标会话。</p>
+          <div class="feature-meta"><span>试听</span><span>会话复核</span><span>双宿主发送</span></div>
         </article>
       </div>
     </section>
@@ -124,8 +126,8 @@
     <section class="section section-features" id="features" aria-labelledby="features-title">
       <div class="section-heading reveal">
         <p class="eyebrow">CORE CAPABILITIES / 02</p>
-        <h2 id="features-title">四条路径，一个发送动作</h2>
-        <p>从输入文字到发送当前会话，Wtonec 把选音色、生成、试听、缓存与格式转换组织成连续工作流。</p>
+        <h2 id="features-title">共享能力，两套宿主发送链</h2>
+        <p>从输入文字到当前会话，Wtonec 共享选音色、生成、试听、缓存与格式转换，并由微信或 QQ Host Adapter 完成最终发送。</p>
       </div>
 
       <div class="feature-grid">
@@ -149,9 +151,9 @@
         </article>
         <article class="feature-card feature-card-coral reveal">
           <span class="feature-index">04</span>
-          <h3>微信兼容音频</h3>
-          <p>接口返回 MP3 后在本地完成解码与 SILK 编码，再进入微信语音发送链。</p>
-          <div class="feature-meta"><span>MP3</span><span>SILK</span><span>当前会话</span></div>
+          <h3>双宿主兼容音频</h3>
+          <p>接口返回音频后在本地完成解码、24 kHz 重采样与 Tencent SILK 编码，再进入微信或 QQ 的语音发送链。</p>
+          <div class="feature-meta"><span>MP3</span><span>Tencent SILK</span><span>微信 / QQ</span></div>
         </article>
       </div>
     </section>
@@ -182,7 +184,7 @@
         </div>
 
         <div class="workbench-footer">
-          <p data-generation-status aria-live="polite">准备生成微信兼容语音</p>
+          <p data-generation-status aria-live="polite">准备生成双宿主兼容语音</p>
           <button class="generate-button" type="button" data-generate>
             <span aria-hidden="true">▶</span><span>生成演示</span>
           </button>
@@ -193,8 +195,8 @@
     <section class="section section-showcase" id="showcase" aria-labelledby="showcase-title">
       <div class="section-heading reveal">
         <p class="eyebrow">REAL INTERFACE / 04</p>
-        <h2 id="showcase-title">真实界面，不是概念图</h2>
-        <p>主页、设置、安全与关于页面均来自 Wtonec 实机截图，界面状态可直接对照当前构建。</p>
+        <h2 id="showcase-title">现有实机界面与构建状态</h2>
+        <p>主页、设置、安全与关于页来自既有 Wtonec 实机截图；当前没有把微信截图标记成 QQ 实机证据，QQ v1.5.4 运行结果以装机验证为准。</p>
       </div>
 
       <div class="showcase-layout reveal" data-gallery>
@@ -230,7 +232,7 @@
     <section class="pipeline-band" id="pipeline" aria-labelledby="pipeline-title">
       <div class="pipeline-heading reveal">
         <p class="eyebrow">AUDIO PIPELINE / 05</p>
-        <h2 id="pipeline-title">从文本到微信语音</h2>
+        <h2 id="pipeline-title">从文本到微信 / QQ 语音</h2>
       </div>
       <ol class="pipeline" aria-label="Wtonec 音频处理流程">
         <li class="pipeline-step reveal"><span>01</span><strong>输入文字</strong><small>最多 500 字</small></li>
@@ -246,18 +248,22 @@
         <p class="eyebrow">LOCAL DATA / 06</p>
         <h2 id="storage-title">数据位置，清楚可查</h2>
         <p>语音包、音色元数据、DEX 缓存和日志均按明确目录组织。Android 11+ 会限制普通文件管理器访问 Android/data，日常维护优先使用应用内导入、导出和清理入口。</p>
-        <p>跨设备或微信实例迁移时先导出 MP3 和记录自定义音色，再由目标环境重建路径与索引。</p>
+        <p>微信与 QQ 保留独立宿主副本，模块通过受控 Bridge 维护共享 Key 和 canonical 语音库。跨设备迁移前先导出 MP3 和自定义音色。</p>
         <a data-link="storage" href="https://github.com/tianxing226/wtonec/blob/main/docs/STORAGE.md" target="_blank" rel="noreferrer">查看存储说明 <span aria-hidden="true">↗</span></a>
       </div>
       <div class="storage-details reveal">
         <div class="storage-root">
-          <span>标准微信主目录</span>
+          <span>微信宿主副本</span>
           <code>/storage/emulated/0/Android/data/com.tencent.mm/Wtonec/</code>
         </div>
+        <div class="storage-root">
+          <span>QQ 宿主副本</span>
+          <code>/storage/emulated/0/Android/data/com.tencent.mobileqq/Wtonec/</code>
+        </div>
         <dl class="storage-list">
-          <div><dt>wtonec/voices</dt><dd>已保存和导入的语音包</dd></div>
-          <div><dt>wtonec/metadata</dt><dd>音色目录与本地索引</dd></div>
-          <div><dt>dex_cache</dt><dd>微信版本指纹与匹配结果</dd></div>
+          <div><dt>Wtonec/voices</dt><dd>模块 canonical 共享语音库</dd></div>
+          <div><dt>wtonec/voices</dt><dd>当前宿主可读取的语音副本</dd></div>
+          <div><dt>dex_cache</dt><dd>各宿主版本指纹与匹配结果</dd></div>
           <div><dt>logs / crashes</dt><dd>运行日志与崩溃诊断</dd></div>
           <div><dt>cache/Wtonec</dt><dd>可清理的语音生成任务缓存</dd></div>
         </dl>
@@ -271,7 +277,7 @@
       <div class="security-copy reveal">
         <p class="eyebrow">SECURITY FRAMEWORK / 07</p>
         <h2 id="security-title">安全能力，按真实进度呈现</h2>
-        <p class="security-lead">安全页可读取设备当前可见的微信作用域、模块包、进程与配置证据，并在本地生成报告。结果受系统权限、Root 状态和 LSPosed 可见性影响。</p>
+        <p class="security-lead">安全页可读取设备当前可见的微信/QQ 作用域、模块包、进程与配置证据，并在本地生成报告。结果受系统权限、Root 状态和 LSPosed 可见性影响。</p>
         <ul class="security-list">
           <li><span></span>API Key 通过 Android Keystore 加密保存</li>
           <li><span></span>构建身份与 DEX 缓存状态可追踪</li>
@@ -296,7 +302,7 @@
 
   <footer class="site-footer">
     <div class="brand footer-brand"><span class="brand-mark" aria-hidden="true">WT</span><span class="brand-name">Wtonec</span></div>
-    <p>Android 微信语音工作台</p>
+    <p>Android 微信 / QQ 双宿主语音工作台</p>
     <p>© <span data-year></span> Wtonec</p>
   </footer>
 

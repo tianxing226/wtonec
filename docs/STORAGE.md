@@ -1,30 +1,38 @@
 # 数据目录、备份与清理
 
-本页目录结构根据当前私有实现中的 `BuildConfig.TAG`、路径常量、语音仓库、DEX 存储、日志策略、崩溃管理和 SAF 导入导出逻辑整理。
+Wtonec `1.5.4` 同时支持微信 `com.tencent.mm` 和 QQ `com.tencent.mobileqq`。两个宿主保存各自可直接访问的副本，模块应用另外维护受控的 canonical 配置和语音库。
 
-## 主目录
-
-标准微信包名为 `com.tencent.mm`，Wtonec 外部数据根目录为：
+## 宿主目录
 
 ```text
-/storage/emulated/0/Android/data/com.tencent.mm/Wtonec/
+微信：/storage/emulated/0/Android/data/com.tencent.mm/Wtonec/
+QQ：  /storage/emulated/0/Android/data/com.tencent.mobileqq/Wtonec/
 ```
 
-多开、工作资料或修改包名版本会将 `com.tencent.mm` 替换为实际宿主包名。每个宿主实例使用独立目录、DEX 缓存和语音索引。
-
-## 确认存在的布局
+对应任务缓存通常位于：
 
 ```text
-/storage/emulated/0/Android/data/com.tencent.mm/Wtonec/
+/storage/emulated/0/Android/data/<host-package>/cache/Wtonec/
+```
+
+多开、工作资料或修改包名版本会把 `<host-package>` 替换为实际宿主包名。LSPosed scope 和当前版本只面向标准微信及标准 QQ 包名。
+
+## 宿主副本布局
+
+实际子目录按功能首次使用时创建：
+
+```text
+Wtonec/
 ├── wtonec/
 │   ├── voices/
-│   │   ├── <uuid>.mp3
-│   │   └── <uuid>.amr
+│   │   ├── <voice-id>.mp3
+│   │   └── <voice-id>.amr
 │   └── metadata/
 │       ├── voices.txt
 │       ├── voices-metadata.json
 │       ├── custom-voices.json
-│       └── local-voices.json
+│       ├── local-voices.json
+│       └── shared-voice-catalog-v1.json
 ├── dex_cache/
 │   ├── .dex-cache.lock
 │   ├── .fingerprint.json
@@ -34,94 +42,87 @@
 │   └── Wtonec-yyyy-MM-dd.log
 └── crashes/
     ├── wtonec-crash-<timestamp>.log
-    ├── pending_crash.flag
-    └── pending_java_crash.flag
+    └── pending_*.flag
 
-/storage/emulated/0/Android/data/com.tencent.mm/cache/Wtonec/
-└── wtonec-jobs/
-    └── <job-id-or-request-hash>/
-        ├── source.mp3
-        ├── import.mp3
-        ├── voice.amr
-        └── <temporary>.part
+cache/Wtonec/
+├── wtonec-jobs/<job-id>/
+└── ptt/wtonec-*.silk
 ```
 
-目录按功能首次使用时创建。同一任务目录通常只出现其中部分文件。
+`.amr` 是现有宿主兼容文件名，文件内部可能承载 Tencent SILK 数据。日常分享和备份使用应用内 MP3 导出。
+
+## Canonical 共享语音库
+
+模块 `dev.wtonec` 的 externalFilesDir 下维护逻辑目录：
+
+```text
+Wtonec/voices/
+├── .index-v1.json
+├── voice-<SILK-SHA256-prefix>.mp3
+└── voice-<SILK-SHA256-prefix>.amr
+```
+
+该目录由模块 UID 持有。微信和 QQ 通过受签名约束的 Binder/PFD Bridge 读取或写入，不依赖跨 UID 直接访问文件路径。
+
+- canonical 索引按 SILK SHA-256 去重。
+- 微信和 QQ 的标签、分类和最近使用时间可以合并。
+- Bridge 断开时保留宿主本地副本与最后有效目录缓存。
+- 重新连接后继续同步缺失条目，不清空既有语音包。
 
 ## 目录与清理影响
 
-| 位置 | 文件类型与用途 | 是否适合清理 | 清理影响与备份建议 |
+| 位置 | 用途 | 推荐操作 | 清理影响 |
 |---|---|---|---|
-| `wtonec/voices/` | UUID 命名的 `.mp3` 与 `.amr` 成对文件 | 通过语音包页面删除 | 手工删除会让索引指向缺失文件；重要 MP3 先导出 |
-| `wtonec/metadata/` | 音色目录、自定义音色、语音包索引、ETag/更新时间和校验摘要 | 按配置用途谨慎处理 | `custom-voices.json` 和 `local-voices.json` 包含用户配置；迁移优先记录音色 ID 并重新导入 MP3 |
-| `dex_cache/` | 宿主指纹、匹配条目、诊断摘要和跨进程锁 | 从设置页清理 | 清理后下次启动执行完整 DEX 匹配；定位重复更新时先保留 `diagnostics.json` 和 `.fingerprint.json` |
-| `logs/` | `Wtonec-yyyy-MM-dd.log` | 导出问题日志后清理 | 自动轮转保留近期日志；日志可能包含会话标识、文本和本地路径 |
-| `crashes/` | Java/native 崩溃日志和待处理标记 | 问题确认后从日志页面清理 | 管理器最多保留 50 个最新崩溃文件；反馈前遮盖隐私字段 |
-| `cache/Wtonec/wtonec-jobs/` | 生成/导入过程的 MP3、微信语音数据和临时文件 | 可从设置页清理 | 不影响已保存到 `wtonec/voices/` 的语音包；缓存上限约 256 MiB，超过 30 天的旧任务会被回收 |
+| `wtonec/voices/` | 当前宿主可读取的 MP3/SILK 副本 | 从语音包页面管理 | 手工删除可能留下失效索引；重要 MP3 先导出 |
+| `wtonec/metadata/` | 音色、自定义 ID、语音包和共享目录缓存 | 按配置用途保留 | 清理会丢失本地索引或触发重新同步 |
+| `dex_cache/` | 当前宿主版本指纹、匹配结果和诊断 | 从设置页清理 | 下次启动重新执行该宿主 DEX 匹配 |
+| `logs/` / `crashes/` | 运行日志和崩溃诊断 | 导出问题证据后清理 | 影响后续问题定位 |
+| `cache/Wtonec/wtonec-jobs/` | 生成、下载、导入和转码缓存 | 从设置页清理 | 不影响已保存语音包 |
+| `cache/Wtonec/ptt/` | QQ PTT 暂存与 ACK 保留文件 | 由 Wtonec 自动回收 | 发送过程清理可能造成 QQ 读取失败 |
+| canonical `Wtonec/voices/` | 两宿主共享的权威语音库 | 使用应用内语音包功能 | 清理会影响两个宿主的后续同步 |
 
-`.amr` 文件承载 Wtonec 生成的微信语音数据，扩展名不表示普通 AMR 音频。日常分享和备份使用 MP3 导出功能。
+QQ PTT 成功回调后仍会保留暂存文件一段时间，供 QQ 媒体线程继续读取。Wtonec 只回收自己创建的 `wtonec-*.silk`、`.ack` 和 `.part` 文件。
 
 ## 导入与导出
 
 ### 导入
 
-1. 在“语音包”页点击导入。
-2. Android 系统文件选择器返回所选文件 URI。
-3. Wtonec 检查 MIME 类型和 20 MiB 大小限制。
-4. 文件临时写入 `wtonec-jobs/<job-id>/import.mp3`。
-5. MP3 校验并生成微信语音数据后，成对复制到 `wtonec/voices/`。
-6. `local-voices.json` 更新索引，导入任务临时文件被清理。
+1. 在“语音包”页打开系统文件选择器。
+2. Wtonec 校验文件类型、大小和可解码性。
+3. 音频写入任务临时目录并转换为宿主语音格式。
+4. 文件和索引原子写入当前宿主副本。
+5. 通过 PFD/Bridge 尝试同步 canonical 语音库。
 
 ### 导出
 
-1. 在语音包条目中点击导出。
-2. 系统创建文件界面让使用者选择目标位置和文件名。
-3. Wtonec 将对应 MP3 写入所选 URI。
+1. 在语音包条目中选择导出。
+2. 通过系统创建文件界面选择位置和名称。
+3. Wtonec 将对应 MP3 写入目标 URI。
 
-导出文件位置由使用者选择，通常不在 Wtonec 主目录中。
+## Android 11+ 访问
 
-## Android 11+ 访问说明
+Android 分区存储会限制普通文件管理器浏览 `Android/data`。推荐顺序：
 
-Android 分区存储会限制普通文件管理器浏览 `Android/data`。推荐管理顺序：
-
-1. 使用 Wtonec 内置导入、导出、日志查看和清理入口。
-2. 使用 Android 系统文件选择器保存或选择 MP3。
+1. 使用 Wtonec 内置导入、导出、日志和清理入口。
+2. 使用 Android 系统文件选择器。
 3. 在设备策略允许时使用 ADB 查看和备份。
-4. 由设备高级管理环境处理完整目录备份。
 
-ADB 只读查看示例：
+只读查看示例：
 
 ```bash
 adb shell ls -la /sdcard/Android/data/com.tencent.mm/Wtonec/
-adb shell ls -la /sdcard/Android/data/com.tencent.mm/cache/Wtonec/wtonec-jobs/
+adb shell ls -la /sdcard/Android/data/com.tencent.mobileqq/Wtonec/
 ```
 
-备份示例：
-
-```bash
-adb pull /sdcard/Android/data/com.tencent.mm/Wtonec/ ./Wtonec-backup/
-```
-
-目录是否对 `adb shell` 可见由 Android 版本、ROM、调试策略和设备权限决定。
+目录是否对 `adb shell` 可见取决于 Android 版本、ROM、调试策略和设备权限。
 
 ## 推荐备份流程
 
 1. 逐条导出重要 MP3。
 2. 记录自定义 Fish Audio 音色 ID、名称和备注。
-3. 导出与问题相关的运行日志和崩溃日志。
-4. 记录 Wtonec、Android、微信和 LSPosed 版本。
+3. 导出相关日志和崩溃报告。
+4. 记录 Wtonec、Android、微信、QQ 和 LSPosed 版本。
 5. 记录当前 APK SHA-256。
-6. 再执行微信清数据、卸载微信、跨设备迁移或系统存储清理。
+6. 再进行宿主清数据、卸载、跨设备迁移或系统存储清理。
 
-`local-voices.json` 保存当前环境的绝对路径。跨设备、跨 Android 用户、跨微信包名或跨多开实例时，推荐在目标环境重新导入 MP3，让 Wtonec 重建路径和索引。
-
-## 推荐清理顺序
-
-1. 导出仍需保留的 MP3。
-2. 在语音包页面删除不再使用的条目。
-3. 在设置页清理语音任务缓存。
-4. 仅在需要重新匹配时清理 DEX 缓存。
-5. 导出问题日志后清理运行日志与崩溃记录。
-6. 完整结束微信进程，再执行目录级维护。
-
-避免直接编辑 JSON、DEX 条目、锁文件、崩溃标记和运行中的临时文件。应用内操作会同步维护音频、索引和当前状态。
+保持 JSON、DEX 条目、锁文件、崩溃标记和运行中的临时文件由 Wtonec 管理。应用内操作会同步维护音频、索引和状态。

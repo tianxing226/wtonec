@@ -9,6 +9,7 @@ on:
       - styles.css
       - app.js
       - assets/**
+      - catalog-v1.json
       - .nojekyll
       - .github/workflows/pages.yml
   workflow_dispatch:
@@ -41,7 +42,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p _site/assets
-          cp index.html styles.css app.js .nojekyll _site/
+          cp index.html styles.css app.js catalog-v1.json .nojekyll _site/
           cp -R assets/. _site/assets/
 
       - name: Upload Pages artifact
