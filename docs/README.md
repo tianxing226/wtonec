@@ -1,6 +1,6 @@
 # Wtonec 文档
 
-Wtonec `1.5.4 (680)` 是一个面向微信与 QQ 的 LSPosed/Xposed 双宿主语音模块，applicationId 为 `dev.wtonec`。
+Wtonec `1.5.11 (687)` 是一个面向微信与 QQ 的 LSPosed/Xposed 双宿主语音模块，applicationId 为 `dev.wtonec`。
 
 建议按以下顺序阅读：
 
@@ -15,7 +15,7 @@ Wtonec `1.5.4 (680)` 是一个面向微信与 QQ 的 LSPosed/Xposed 双宿主语
 - [数据目录、备份与清理](STORAGE.md)
 - [隐私与网络请求](PRIVACY.md)
 - [使用说明与责任边界](DISCLAIMER.md)
-- [v1.5.4 发布说明](RELEASE_1.5.4.md)
+- [v1.5.11 发布说明](RELEASE_1.5.11.md)
 - [公开样例范围](PUBLIC_SOURCE_SCOPE.md)
 - [Xposed 仓库与版本规则](XPOSED_REPOSITORY.md)
 

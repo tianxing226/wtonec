@@ -23,7 +23,7 @@
 2. 填写 `Tiax API Key` 并保存。
 3. 返回目标宿主重新打开语音面板。
 
-v1.5.4 由模块 UID 的 canonical store 保存共享 Key：
+当前版本由模块 UID 的 canonical store 保存共享 Key：
 
 - Android Keystore 别名由模块持有。
 - 明文使用 AES/GCM 加密后保存。

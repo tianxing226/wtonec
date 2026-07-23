@@ -4,21 +4,24 @@ Wtonec 已收录到 [Xposed-Modules-Repo/dev.wtonec](https://github.com/Xposed-M
 
 ## 当前版本
 
-- Xposed Tag：`680-1.5.4`
-- 项目 Tag：`v1.5.4`
-- versionName：`1.5.4`
-- versionCode：`680`
+- Xposed Tag：`687-1.5.11`
+- 项目 Tag：`v1.5.11`
+- versionName：`1.5.11`
+- versionCode：`687`
 - applicationId：`dev.wtonec`
 - 微信作用域：`com.tencent.mm`
 - QQ 作用域：`com.tencent.mobileqq`
-- APK：`Wtonec-v1.5.4-vc680-standard-universal-dual-host-release-hardened.apk`
-- APK 大小：`12,265,913 bytes`
-- APK SHA-256：`3A251F2A67529FABA8042F18AB8775B6339F5E0ACB09BAEF0F4AB5D8559E161F`
+- 推荐 APK：`Wtonec-v1.5.11-vc687-standard-universal-dual-host-release-hardened.apk`
+- 兼容 APK：`Wtonec-v1.5.11-vc687-legacy-universal-dual-host-release-hardened.apk`
+- Standard 大小：`11,897,358 bytes`
+- Legacy 大小：`11,880,461 bytes`
+- Standard SHA-256：`C159214381A0572105A0491E2F5E3B74E954E3F3A23D0D1030759E1E165A19B7`
+- Legacy SHA-256：`33E63109A79E38FCB782DF6BAB369541950F27AC08EE257110EB30141C4FB91C`
 - 签名证书 SHA-256：`BFC2894D0996204A0B6A629C4F9020116098ED7EAF22DD27391051B5BAB704E9`
 
 ## 发布规则
 
-1. 两个仓库使用同一份已验证 Standard Universal Hardened APK。
+1. 两个仓库使用同一组 Standard/Legacy Universal Hardened APK。
 2. Xposed Tag 使用 `versionCode-versionName`，项目 Tag 使用 `vversionName`。
 3. Release 发布后重新下载资产并复核大小、SHA-256、包名、版本、双宿主 scope 和签名。
 4. 私有实现、Keystore、签名配置、API Key、mapping、日志和缓存不进入公开 Git 提交。
@@ -26,4 +29,4 @@ Wtonec 已收录到 [Xposed-Modules-Repo/dev.wtonec](https://github.com/Xposed-M
 
 ## 证据边界
 
-v1.5.4 已通过 Standard/Legacy 单元测试、Lint、构建和 APK 静态审计。构建机发布时没有连接 Android 真机，QQ PTT 气泡、对端接收、双宿主 Bridge 和具体 QQ 版本兼容性仍需设备验证。
+v1.5.11 直接使用既有已审计产物。本次 GitHub 同步不重新构建或运行测试；目标设备中的微信/QQ Hook、语音发送和具体宿主版本兼容性以实际装机结果为准。

@@ -1,24 +1,26 @@
 # Wtonec
 
-Wtonec 是一个面向微信与 QQ 的 Android LSPosed/Xposed 双宿主语音模块。单个 APK 同时声明微信 `com.tencent.mm` 和 QQ `com.tencent.mobileqq` 作用域，在聊天页面提供 WT 入口和语音面板。
+Wtonec 是一个面向微信与 QQ 的 Android LSPosed/Xposed 双宿主语音模块。单个 APK 同时声明微信 `com.tencent.mm` 和 QQ `com.tencent.mobileqq` 作用域，在聊天页面提供悬浮球和语音面板。
 
 ## 当前版本
 
-- 版本：`1.5.4`
-- versionCode：`680`
+- 版本：`1.5.11`
+- versionCode：`687`
 - applicationId：`dev.wtonec`
-- 主推 APK：`Wtonec-v1.5.4-vc680-standard-universal-dual-host-release-hardened.apk`
+- 主推 APK：`Wtonec-v1.5.11-vc687-standard-universal-dual-host-release-hardened.apk`
+- 兼容 APK：`Wtonec-v1.5.11-vc687-legacy-universal-dual-host-release-hardened.apk`
 - ABI：`arm64-v8a`、`armeabi-v7a`
 - minSdk / targetSdk：`28 / 37`
-- APK SHA-256：`3A251F2A67529FABA8042F18AB8775B6339F5E0ACB09BAEF0F4AB5D8559E161F`
+- Standard APK SHA-256：`C159214381A0572105A0491E2F5E3B74E954E3F3A23D0D1030759E1E165A19B7`
+- Legacy APK SHA-256：`33E63109A79E38FCB782DF6BAB369541950F27AC08EE257110EB30141C4FB91C`
 - Release 签名证书 SHA-256：`BFC2894D0996204A0B6A629C4F9020116098ED7EAF22DD27391051B5BAB704E9`
 
-本版本的 Standard/Legacy 单元测试、Lint、构建、zipalign、签名、ABI 和 APK 静态审计已通过。当前构建机未连接 Android 真机，QQ PTT 气泡、双宿主 Bridge、在线来源真实试听/保存/发送和液态玻璃 GPU 截图仍需装机验证。
+v1.5.11 直接使用已审计的 Standard/Legacy Hardened APK；本次 GitHub 发布过程不重新构建、不运行 Gradle/Cargo 测试。既有交付报告记录单元测试、Lint、签名、zipalign 和 APK 审计结果；目标设备上的宿主行为仍以实际装机为准。
 
 ## 主要功能
 
-- **微信模块**：微信聊天页 WT 入口、语音模式长按入口、预设/克隆/语音包/设置面板。
-- **QQ 模块**：QQ NT 聊天页 WT 入口、QQ 语音发送链、私聊和群聊适配框架。
+- **微信模块**：微信聊天页悬浮球、语音模式长按入口、预设/克隆/语音包/设置面板。
+- **QQ 模块**：QQ NT 聊天页悬浮球、QQ 语音发送链、私聊和群聊适配框架。
 - Fish Audio 预设音色、克隆音色 ID、轻颜音色和 Android 系统 TTS。
 - 文字转语音、试听、生成、保存、生成并发送。
 - 本地语音包导入、搜索、排序、试听、重命名、导出、删除和发送。
@@ -36,7 +38,7 @@ Wtonec 是一个面向微信与 QQ 的 Android LSPosed/Xposed 双宿主语音模
    - QQ：`com.tencent.mobileqq`
 4. 完全结束对应的微信或 QQ 进程后重新启动。
 5. 首次启动按提示完成对应宿主的 DEX 匹配，再完整重启一次宿主。
-6. 进入私聊或群聊，使用 WT 入口或宿主语音入口打开面板。
+6. 进入私聊或群聊，点击悬浮球或使用宿主语音入口打开面板。
 
 微信和 QQ 的 Hook、DEX 缓存、会话状态和宿主目录分别隔离。只使用微信时可以只勾选微信作用域，只使用 QQ 时可以只勾选 QQ 作用域。
 
@@ -55,11 +57,11 @@ Fish Audio、轻颜和克隆音色需要自己的 Tiax API Key：
 
 ### 微信模块
 
-进入微信聊天页，将输入栏切换到语音模式，长按微信语音按钮，或点击 WT 浮动入口打开面板。确认面板顶部显示正确的当前会话后，再试听、生成或发送。
+进入微信聊天页，将输入栏切换到语音模式，长按微信语音按钮，或点击悬浮球打开面板。确认面板顶部显示正确的当前会话后，再试听、生成或发送。
 
 ### QQ 模块
 
-进入 QQ NT 私聊或群聊，点击 WT 浮动入口，或使用已适配的 QQ 语音入口打开面板。发送前确认当前 QQ 会话和账号信息。QQ 版本差异可能影响 AIO、Contact、回调和语音气泡行为，实际兼容性以目标设备验证结果为准。
+进入 QQ NT 私聊或群聊，点击悬浮球，或使用已适配的 QQ 语音入口打开面板。发送前确认当前 QQ 会话和账号信息。QQ 版本差异可能影响 AIO、Contact、回调和语音气泡行为，实际兼容性以目标设备验证结果为准。
 
 ### 音频格式
 
@@ -86,7 +88,8 @@ Fish Audio、轻颜和克隆音色需要自己的 Tiax API Key：
 - [数据目录](docs/STORAGE.md)
 - [隐私说明](docs/PRIVACY.md)
 - [常见问题](docs/TROUBLESHOOTING.md)
-- [Release v1.5.4](docs/RELEASE_1.5.4.md)
+- [Release v1.5.11](docs/RELEASE_1.5.11.md)
+- [免责声明](docs/DISCLAIMER.md)
 - [Xposed 官方仓库与版本规则](docs/XPOSED_REPOSITORY.md)
 - [公开样例范围](docs/PUBLIC_SOURCE_SCOPE.md)
 
@@ -100,6 +103,12 @@ Fish Audio、轻颜和克隆音色需要自己的 Tiax API Key：
 ## 公开范围
 
 公共仓库提供项目介绍、使用文档、截图、静态网站、少量独立 Kotlin 样例和 Release APK。正式 Hook、DEX matcher、微信/QQ 内部调用、编解码、JNI/Rust、Bridge、签名和加固实现保留在私有工程。
+
+## 免责声明
+
+Wtonec 仅供学习、研究与技术交流使用。使用者应遵守所在地法律法规、软件平台规则及第三方服务条款，并自行承担安装、配置、升级、内容来源和使用行为产生的责任。
+
+本项目与微信、QQ、腾讯、LSPosed、Fish Audio、Tiax 及其他内容来源不存在隶属、合作、官方授权或背书关系，相关名称与商标归各权利主体所有。严禁用于侵犯隐私、传播侵权内容、欺诈、骚扰、批量滥用、干扰平台服务或其他违法用途。第三方接口、内容许可、价格和可用性以对应服务方规则为准。详细内容见 [使用说明与责任边界](docs/DISCLAIMER.md)。
 
 ## 反馈与隐私
 

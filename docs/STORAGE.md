@@ -1,6 +1,6 @@
 # 数据目录、备份与清理
 
-Wtonec `1.5.4` 同时支持微信 `com.tencent.mm` 和 QQ `com.tencent.mobileqq`。两个宿主保存各自可直接访问的副本，模块应用另外维护受控的 canonical 配置和语音库。
+Wtonec `1.5.11` 同时支持微信 `com.tencent.mm` 和 QQ `com.tencent.mobileqq`。两个宿主保存各自可直接访问的副本，模块应用另外维护受控的 canonical 配置和语音库。
 
 ## 宿主目录
 

@@ -1,7 +1,7 @@
 const LINKS = Object.freeze({
   github: "https://github.com/tianxing226/wtonec",
   xposed: "https://github.com/Xposed-Modules-Repo/dev.wtonec",
-  release: "https://github.com/Xposed-Modules-Repo/dev.wtonec/releases/tag/680-1.5.4",
+  release: "https://github.com/Xposed-Modules-Repo/dev.wtonec/releases/tag/687-1.5.11",
   docs: "https://github.com/tianxing226/wtonec/tree/main/docs",
   storage: "https://github.com/tianxing226/wtonec/blob/main/docs/STORAGE.md",
   samples: "https://github.com/tianxing226/wtonec/tree/main/examples/android-kotlin",
@@ -22,7 +22,7 @@ const SCREENS = Object.freeze({
     alt: "Wtonec 设置页实机截图",
     eyebrow: "DEX 与宿主",
     title: "配置与双宿主维护集中呈现",
-    description: "微信/QQ 宿主包、WT 入口、DEX 缓存与模块维护状态位于同一设置页。",
+    description: "微信/QQ 宿主包、悬浮球、DEX 缓存与模块维护状态位于同一设置页。",
     accent: "#D3FFAF",
     caption: "Wtonec 设置页",
   },
