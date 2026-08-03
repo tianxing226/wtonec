@@ -4,18 +4,18 @@ Wtonec 是一个面向微信与 QQ 的 Android LSPosed/Xposed 双宿主语音模
 
 ## 当前版本
 
-- 版本：`1.5.11`
-- versionCode：`687`
+- 版本：`1.6.7`
+- versionCode：`696`
 - applicationId：`dev.wtonec`
-- 主推 APK：`Wtonec-v1.5.11-vc687-standard-universal-dual-host-release-hardened.apk`
-- 兼容 APK：`Wtonec-v1.5.11-vc687-legacy-universal-dual-host-release-hardened.apk`
+- 主推 APK：`Wtonec-v1.6.7-vc696-standard-universal-dual-host-release-hardened.apk`
+- 兼容 APK：`Wtonec-v1.6.7-vc696-legacy-universal-dual-host-release-hardened.apk`
 - ABI：`arm64-v8a`、`armeabi-v7a`
 - minSdk / targetSdk：`28 / 37`
-- Standard APK SHA-256：`C159214381A0572105A0491E2F5E3B74E954E3F3A23D0D1030759E1E165A19B7`
-- Legacy APK SHA-256：`33E63109A79E38FCB782DF6BAB369541950F27AC08EE257110EB30141C4FB91C`
+- Standard APK SHA-256：`B728611E2789F7F19B8F8C05271FD8A069F664BC2B8DD71F23D52FAD29E2DE81`
+- Legacy APK SHA-256：`9A7A8C688A9BD07261A88E363622283157D1FE4AE072BFB53ED505264D036CFA`
 - Release 签名证书 SHA-256：`BFC2894D0996204A0B6A629C4F9020116098ED7EAF22DD27391051B5BAB704E9`
 
-v1.5.11 直接使用已审计的 Standard/Legacy Hardened APK；本次 GitHub 发布过程不重新构建、不运行 Gradle/Cargo 测试。既有交付报告记录单元测试、Lint、签名、zipalign 和 APK 审计结果；目标设备上的宿主行为仍以实际装机为准。
+v1.6.7 同时发布 Standard 与 Legacy Universal Hardened 正式签名 APK。本轮从同一最新源码完成 Standard/Legacy 的 Debug、HardenedDebug、Release 共 18 个 APK 构建；既有报告记录 695 项单元测试、6 个 Lint 变体以及签名、zipalign、R8、资源、DEX 和 scope 静态审计。GitHub 同步阶段直接使用这批产物，不再次触发构建。目标设备上的覆盖安装、微信/QQ 悬浮窗和宿主 ACK 仍标记为 `PENDING_DEVICE`。
 
 ## 主要功能
 
@@ -27,7 +27,8 @@ v1.5.11 直接使用已审计的 Standard/Legacy Hardened APK；本次 GitHub �
 - 在线语音目录、下载、缓存、取消、重试、试听和发送。
 - MP3/其他音频本地解码、Tencent SILK 兼容编码和宿主语音发送。
 - API Key 加密保存、共享配置 Bridge、DEX 缓存、运行日志和本地安全证据页。
-- 液态玻璃、Miuix 浅色和 AMOLED 深色面板。
+- 156 个随 APK 打包的本地悬浮窗图标、自定义图标导入和微信/QQ 独立持久化。
+- 液态玻璃、Miuix 浅色、AMOLED 深色及扩展面板主题；应用界面主题与语音面板风格相互独立。
 
 ## 安装与激活
 
@@ -88,7 +89,8 @@ Fish Audio、轻颜和克隆音色需要自己的 Tiax API Key：
 - [数据目录](docs/STORAGE.md)
 - [隐私说明](docs/PRIVACY.md)
 - [常见问题](docs/TROUBLESHOOTING.md)
-- [Release v1.5.11](docs/RELEASE_1.5.11.md)
+- [Release v1.6.7](docs/RELEASE_1.6.7.md)
+- [Release v1.5.11（历史）](docs/RELEASE_1.5.11.md)
 - [免责声明](docs/DISCLAIMER.md)
 - [Xposed 官方仓库与版本规则](docs/XPOSED_REPOSITORY.md)
 - [公开样例范围](docs/PUBLIC_SOURCE_SCOPE.md)

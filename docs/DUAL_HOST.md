@@ -1,6 +1,6 @@
 # 微信与 QQ 双宿主说明
 
-Wtonec `1.5.11` 使用一个 `dev.wtonec` APK，同时声明：
+Wtonec `1.6.7` 使用一个 `dev.wtonec` APK，同时声明：
 
 ```text
 com.tencent.mm
@@ -28,6 +28,8 @@ com.tencent.mobileqq
 - 微信与 QQ 使用同一套宿主内悬浮球控制器。
 - 入口挂载到当前聊天 Activity 的 `android.R.id.content`，不申请系统悬浮窗权限。
 - 两个宿主分别保存开关与拖动位置。
+- 图标选择按宿主保存，通过 revision、SHA-256、PFD 安装和宿主 ACK 完成跨进程原子更新。
+- 内置图标从模块 Resources 解码，自定义图标从宿主私有副本加载；解析失败时保留可诊断默认入口。
 - Activity、AIO 或会话结束时清理入口和弱引用。
 - 打开面板前再次验证当前会话，降低生成期间切换聊天造成的误发风险。
 
