@@ -2,7 +2,7 @@
 
 ## 选择宿主
 
-Wtonec `1.6.7` 是微信模块与 QQ 模块共用的单 APK。微信和 QQ 分别维护会话、DEX 缓存、悬浮球位置、图标 revision/ACK 和宿主副本；配置与 canonical 语音库通过受控 Bridge 同步。
+Wtonec `1.6.8` 是微信模块与 QQ 模块共用的单 APK。微信和 QQ 分别维护会话、DEX 缓存、悬浮球位置、图标 revision/ACK 和宿主副本；配置与 canonical 语音库通过受控 Bridge 同步。
 
 ## 打开面板
 

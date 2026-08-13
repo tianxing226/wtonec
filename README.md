@@ -4,18 +4,17 @@ Wtonec 是一个面向微信与 QQ 的 Android LSPosed/Xposed 双宿主语音模
 
 ## 当前版本
 
-- 版本：`1.6.7`
-- versionCode：`696`
+- 版本：`1.6.8`
+- versionCode：`697`
 - applicationId：`dev.wtonec`
-- 主推 APK：`Wtonec-v1.6.7-vc696-standard-universal-dual-host-release-hardened.apk`
-- 兼容 APK：`Wtonec-v1.6.7-vc696-legacy-universal-dual-host-release-hardened.apk`
+- 主推 APK：`Wtonec-v1.6.8-vc697-standard-universal-dual-host-release-hardened.apk`
 - ABI：`arm64-v8a`、`armeabi-v7a`
 - minSdk / targetSdk：`28 / 37`
-- Standard APK SHA-256：`B728611E2789F7F19B8F8C05271FD8A069F664BC2B8DD71F23D52FAD29E2DE81`
-- Legacy APK SHA-256：`9A7A8C688A9BD07261A88E363622283157D1FE4AE072BFB53ED505264D036CFA`
+- Standard APK SHA-256：`0AF92213A77AE84B921DAA4D924800EB4C1A4C3FCF67A4CE18017B35708F9205`
+- Standard APK 大小：`13,793,844 bytes`
 - Release 签名证书 SHA-256：`BFC2894D0996204A0B6A629C4F9020116098ED7EAF22DD27391051B5BAB704E9`
 
-v1.6.7 同时发布 Standard 与 Legacy Universal Hardened 正式签名 APK。本轮从同一最新源码完成 Standard/Legacy 的 Debug、HardenedDebug、Release 共 18 个 APK 构建；既有报告记录 695 项单元测试、6 个 Lint 变体以及签名、zipalign、R8、资源、DEX 和 scope 静态审计。GitHub 同步阶段直接使用这批产物，不再次触发构建。目标设备上的覆盖安装、微信/QQ 悬浮窗和宿主 ACK 仍标记为 `PENDING_DEVICE`。
+v1.6.8 发布 Standard Universal Hardened 正式签名 APK，目标为微信 `com.tencent.mm` 与 QQ `com.tencent.mobileqq` 双宿主。既有最终报告记录 191 个测试套件、775 项测试、0 failures/errors/skipped，APK 静态审计 PASS，第一方 R8 重命名比例 97.9034%。本次公开发布直接使用既有产物；设备上的宿主面板、ACK、生成与发送矩阵仍按报告标记为 `PENDING_DEVICE`。Legacy 资产继续保留在 v1.6.7 Release。
 
 ## 主要功能
 
@@ -29,6 +28,8 @@ v1.6.7 同时发布 Standard 与 Legacy Universal Hardened 正式签名 APK。�
 - API Key 加密保存、共享配置 Bridge、DEX 缓存、运行日志和本地安全证据页。
 - 156 个随 APK 打包的本地悬浮窗图标、自定义图标导入和微信/QQ 独立持久化。
 - 液态玻璃、Miuix 浅色、AMOLED 深色及扩展面板主题；应用界面主题与语音面板风格相互独立。
+- v1.6.8：统一配置快照与跨宿主主题 revision、CDN DNS 过滤回退、聊天入口重绑保护，以及硬件液态玻璃与软件 acrylic fallback。
+- Fish Audio 保留快捷语气标签；轻颜免费、系统 TTS、MiniMax 使用各自能力参数，MiniMax emotion 与快捷标签分离。
 
 ## 安装与激活
 
@@ -89,7 +90,8 @@ Fish Audio、轻颜和克隆音色需要自己的 Tiax API Key：
 - [数据目录](docs/STORAGE.md)
 - [隐私说明](docs/PRIVACY.md)
 - [常见问题](docs/TROUBLESHOOTING.md)
-- [Release v1.6.7](docs/RELEASE_1.6.7.md)
+- [Release v1.6.8](docs/RELEASE_1.6.8.md)
+- [Release v1.6.7（历史）](docs/RELEASE_1.6.7.md)
 - [Release v1.5.11（历史）](docs/RELEASE_1.5.11.md)
 - [免责声明](docs/DISCLAIMER.md)
 - [Xposed 官方仓库与版本规则](docs/XPOSED_REPOSITORY.md)

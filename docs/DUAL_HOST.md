@@ -1,6 +1,6 @@
 # 微信与 QQ 双宿主说明
 
-Wtonec `1.6.7` 使用一个 `dev.wtonec` APK，同时声明：
+Wtonec `1.6.8` 使用一个 `dev.wtonec` APK，同时声明：
 
 ```text
 com.tencent.mm
