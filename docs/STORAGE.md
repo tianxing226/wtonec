@@ -1,6 +1,6 @@
 # 数据目录、备份与清理
 
-Wtonec `1.6.8` 同时支持微信 `com.tencent.mm` 和 QQ `com.tencent.mobileqq`。两个宿主保存各自可直接访问的副本，模块应用另外维护受控的 canonical 配置、图标状态和语音库。
+Wtonec `1.6.9` 同时支持微信 `com.tencent.mm` 和 QQ `com.tencent.mobileqq`。两个宿主保存各自可直接访问的副本，模块应用另外维护受控的 canonical 配置、图标状态和语音库。
 
 ## 宿主目录
 
@@ -62,7 +62,7 @@ Wtonec/voices/
 └── voice-<SILK-SHA256-prefix>.amr
 ```
 
-该目录由模块 UID 持有。微信和 QQ 通过受签名约束的 Binder/PFD Bridge 读取或写入，不依赖跨 UID 直接访问文件路径。
+该目录由模块 UID 持有。微信和 QQ 通过受签名约束的 Binder/PFD Bridge 读取或写入，不依赖跨 UID 直接访问文件路径。配置快照以版本化 JSON/Proto 形式保存 `schemaVersion`、`revision`、`updatedAt`、`operationId`、主题和加密密钥封装；更新使用临时文件、flush/fsync、原子替换与 read-back 校验。
 
 - canonical 索引按 SILK SHA-256 去重。
 - 微信和 QQ 的标签、分类和最近使用时间可以合并。

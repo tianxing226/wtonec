@@ -8,7 +8,7 @@
 - QQ 标准包名：`com.tencent.mobileqq`。
 - 从 [Xposed 官方 Releases](https://github.com/Xposed-Modules-Repo/dev.wtonec/releases) 下载最新 Standard Universal Hardened APK。
 
-Fish Audio、轻颜和克隆音色需要网络及自己的 Tiax API Key；Android 系统 TTS、本地语音包和公开在线样例不读取该 Key。
+Fish Audio、轻颜、ElevenLabs 文字转语音和克隆音色需要网络及自己的 Tiax API Key；Android 系统 TTS、本地语音包和公开在线样例不读取该 Key。安全页还支持 OpenAI-compatible/第三方 endpoint、Key 与模型配置，凭据使用 Android Keystore 加密保存。
 
 ## 安装与作用域
 
@@ -54,6 +54,8 @@ QQ 的 AIO、Contact 和消息接口会随版本变化。当前 APK 已包含双
 ## 首次生成
 
 - Fish Audio/轻颜：在“设置”中保存自己的 Tiax API Key。
+- ElevenLabs：在“预设”中选择 ElevenLabs，刷新或填写 Voice ID；收到语音长按菜单中的 ElevenLabs 克隆结果会自动保存到该列表。
+- AI 安全扫描：在“安全”中填写第三方 API 地址和 Key，读取模型列表后选择模型；仅在本地执行扫描并写入本地报告。
 - 系统 TTS：直接选择“系统 TTS”，可调整语速、音调或打开系统语音设置。
 - 本地语音包：导入受支持音频后即可试听、保存或发送。
 - 在线语音包：选择来源、试听、下载、保存或直接发送；来源状态随对应站点变化。

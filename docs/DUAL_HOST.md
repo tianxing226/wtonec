@@ -1,6 +1,6 @@
 # 微信与 QQ 双宿主说明
 
-Wtonec `1.6.8` 使用一个 `dev.wtonec` APK，同时声明：
+Wtonec `1.6.9` 使用一个 `dev.wtonec` APK，同时声明：
 
 ```text
 com.tencent.mm
@@ -51,16 +51,16 @@ QQ 发送链执行：
 
 ## 共享配置与语音库
 
-- API Key 由模块 UID 的 canonical Keystore store 持有。
+- API Key 由模块 UID 的 canonical Keystore store 持有；微信和 QQ 从同一份带 revision 的配置快照读取。
 - 微信和 QQ 经 UID、包名和签名检查后访问 Bridge。
 - 语音包 canonical 索引按 SILK SHA-256 去重。
 - 每个宿主仍保留自己的可读副本、DEX 缓存和故障日志。
-- Bridge 暂时断开时保留本地功能和最后有效缓存。
+- Bridge 暂时断开时保留本地功能和最后有效缓存；恢复后由失效通知触发完整快照拉取，旧 revision 不覆盖新值。
 
 ## 当前验证状态
 
 - `REPRODUCED(static)`：双 scope、Host Adapter、会话校验、nonce、PTT 暂存、回调状态机、共享目录契约、单元测试和 APK 审计。
-- `PENDING_DEVICE`：真实 QQ NT 的 QRoute/Contact 兼容、私聊/群聊气泡、播放、对端接收、双宿主 Bridge、入口生命周期和截图效果。
+- `PENDING_DEVICE`：真实 QQ NT 的 QRoute/Contact 兼容、私聊/群聊气泡、播放、对端接收、双宿主 Bridge、入口生命周期和截图效果。当前两台 MuMu 实例均未安装 QQ 包，静态结果不替代宿主实机证据。
 
 反馈 QQ 问题时请提供 QQ 版本、versionCode、Android、LSPosed、会话类型、日志时间段和对端接收结果，并遮盖账号和会话数据。
 

@@ -2,7 +2,7 @@
 
 ## 选择宿主
 
-Wtonec `1.6.8` 是微信模块与 QQ 模块共用的单 APK。微信和 QQ 分别维护会话、DEX 缓存、悬浮球位置、图标 revision/ACK 和宿主副本；配置与 canonical 语音库通过受控 Bridge 同步。
+Wtonec `1.6.9` 是微信模块与 QQ 模块共用的单 APK。微信和 QQ 分别维护会话、DEX 缓存、悬浮球位置、图标 revision/ACK 和宿主副本；配置与 canonical 语音库通过统一快照和受控 Bridge 同步。
 
 ## 打开面板
 
@@ -24,6 +24,14 @@ Wtonec `1.6.8` 是微信模块与 QQ 模块共用的单 APK。微信和 QQ 分�
 
 “克隆”页可以保存多个 Fish Audio 音色 ID 和显示名称。在线生成需要自己的 Tiax API Key。
 
+## ElevenLabs
+
+1. 在“预设”页切换到 ElevenLabs，刷新音色目录或输入已有 Voice ID。
+2. 选择音色后试听、生成、保存或发送；语速参数在 ElevenLabs 区域单独保存。
+3. 在微信或 QQ 长按收到的语音消息，选择 ElevenLabs 克隆；上传完成后返回的 Voice ID 会进入 ElevenLabs 音色列表。
+
+ElevenLabs 的音频与克隆请求使用 Tiax 接口转发，计费和可用音色以接口服务当前状态为准。Voice ID 只作为本地加密配置元数据保存，不写入公开导出 JSON。
+
 ## 轻颜音色
 
 1. 在“预设”页切换到轻颜来源。
@@ -33,7 +41,7 @@ Wtonec `1.6.8` 是微信模块与 QQ 模块共用的单 APK。微信和 QQ 分�
 ## 系统 TTS
 
 1. 切换到“系统 TTS”。
-2. 输入文字，可使用文字模板和语气设置。
+2. 输入文字，可使用文字模板；系统 TTS 不提供 Fish/MiniMax 方括号语气标签。
 3. 调整语速和音调。
 4. 生成、试听、保存或发送。
 
@@ -60,7 +68,7 @@ Wtonec 在本地完成音频解码、单声道处理、24 kHz 重采样和 Tence
 
 ## 面板和悬浮球
 
-- 液态玻璃：采样当前聊天背景。
+- 液态玻璃：采样当前聊天背景并分层应用模糊、surface tint、描边和高光；硬件 Canvas 使用实时材质，软件 Canvas 使用 acrylic fallback。
 - Miuix 浅色：强调清晰可读。
 - AMOLED 深色：适合深色环境。
 - 微信与 QQ 共用悬浮球功能配置，位置按宿主分别保存。
@@ -69,6 +77,8 @@ Wtonec 在本地完成音频解码、单声道处理、24 kHz 重采样和 Tence
 ## 安全页
 
 安全页读取当前设备可见的宿主作用域、模块包、进程和本地配置证据，并在本地生成报告。结果受 Android 权限、Root 状态和 LSPosed 可见性影响。
+
+安全页可配置 OpenAI-compatible/第三方 API 地址、Key 和模型，用于本地模块与宿主风险摘要；配置与 Tiax Key 分离并以 Keystore 密文保存。
 
 ## 数据目录
 

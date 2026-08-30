@@ -4,32 +4,36 @@ Wtonec 是一个面向微信与 QQ 的 Android LSPosed/Xposed 双宿主语音模
 
 ## 当前版本
 
-- 版本：`1.6.8`
-- versionCode：`697`
+- 版本：`1.6.9`
+- versionCode：`698`
 - applicationId：`dev.wtonec`
-- 主推 APK：`Wtonec-v1.6.8-vc697-standard-universal-dual-host-release-hardened.apk`
+- 主推 APK：`Wtonec-v1.6.9-vc698-standard-universal-dual-host-release-hardened.apk`
 - ABI：`arm64-v8a`、`armeabi-v7a`
 - minSdk / targetSdk：`28 / 37`
-- Standard APK SHA-256：`0AF92213A77AE84B921DAA4D924800EB4C1A4C3FCF67A4CE18017B35708F9205`
-- Standard APK 大小：`13,793,844 bytes`
+- Standard APK SHA-256：`2FDFD019D603234A1049077D95BE248BD27503CAF72BE5D7258624267A782A26`
+- Standard APK 大小：`13,973,520 bytes`
 - Release 签名证书 SHA-256：`BFC2894D0996204A0B6A629C4F9020116098ED7EAF22DD27391051B5BAB704E9`
 
-v1.6.8 发布 Standard Universal Hardened 正式签名 APK，目标为微信 `com.tencent.mm` 与 QQ `com.tencent.mobileqq` 双宿主。既有最终报告记录 191 个测试套件、775 项测试、0 failures/errors/skipped，APK 静态审计 PASS，第一方 R8 重命名比例 97.9034%。本次公开发布直接使用既有产物；设备上的宿主面板、ACK、生成与发送矩阵仍按报告标记为 `PENDING_DEVICE`。Legacy 资产继续保留在 v1.6.7 Release。
+v1.6.9 发布 Standard Universal Hardened 正式签名 APK，目标为微信 `com.tencent.mm` 与 QQ `com.tencent.mobileqq` 双宿主。当前静态测试记录 195 个测试套件、796 项测试、0 failures/errors/skipped，Lint 73 warnings / 0 errors，第一方 R8 重命名比例 97.9976%。两台 MuMu Android 15 实例已安装并校验同一 APK；宿主面板、ACK、生成与发送矩阵及 QQ 缺包项目仍按报告标记为 `PENDING_DEVICE`。完整变更见 [v1.6.9 发布说明](docs/RELEASE_1.6.9.md)。
 
 ## 主要功能
 
 - **微信模块**：微信聊天页悬浮球、语音模式长按入口、预设/克隆/语音包/设置面板。
 - **QQ 模块**：QQ NT 聊天页悬浮球、QQ 语音发送链、私聊和群聊适配框架。
-- Fish Audio 预设音色、克隆音色 ID、轻颜音色和 Android 系统 TTS。
+- Fish Audio 预设音色、克隆音色 ID、轻颜音色、ElevenLabs 音色和 Android 系统 TTS。
 - 文字转语音、试听、生成、保存、生成并发送。
 - 本地语音包导入、搜索、排序、试听、重命名、导出、删除和发送。
 - 在线语音目录、下载、缓存、取消、重试、试听和发送。
 - MP3/其他音频本地解码、Tencent SILK 兼容编码和宿主语音发送。
-- API Key 加密保存、共享配置 Bridge、DEX 缓存、运行日志和本地安全证据页。
+- API Key 加密保存、统一配置快照、共享配置 Bridge、DEX 缓存、运行日志和本地安全证据页。
 - 156 个随 APK 打包的本地悬浮窗图标、自定义图标导入和微信/QQ 独立持久化。
 - 液态玻璃、Miuix 浅色、AMOLED 深色及扩展面板主题；应用界面主题与语音面板风格相互独立。
-- v1.6.8：统一配置快照与跨宿主主题 revision、CDN DNS 过滤回退、聊天入口重绑保护，以及硬件液态玻璃与软件 acrylic fallback。
-- Fish Audio 保留快捷语气标签；轻颜免费、系统 TTS、MiniMax 使用各自能力参数，MiniMax emotion 与快捷标签分离。
+- v1.6.9：液态玻璃光学材质采用背景采样、模糊、surface tint、描边高光和软件 acrylic fallback 分层渲染，避免根节点透明穿透。
+- v1.6.9：统一 canonical 配置快照按 revision/CAS 原子保存，微信与 QQ 通过失效通知主动拉取，宿主不再逐字段轮询。
+- v1.6.9：直连源站网络配置移除旧 CDN 过滤路径；聊天入口增加重绑和会话校验保护。
+- v1.6.9：Fish Audio 目录更新到 296 项并包含新增 291–305 音色；轻颜免费、系统 TTS、MiniMax 不显示快捷语气标签，MiniMax emotion 与标签分离并显示参考价 0.2 元/次。
+- v1.6.9：安全页支持配置 OpenAI-compatible/第三方 API 地址、Key 与模型发现；密钥仅以 Keystore 加密密文保存。
+- v1.6.9：新增 ElevenLabs 文字转语音音色区和音色管理；收到的语音可从长按菜单提交到 ElevenLabs 克隆流程，返回的 Voice ID 保存到对应区域。
 
 ## 安装与激活
 
@@ -53,7 +57,7 @@ Fish Audio、轻颜和克隆音色需要自己的 Tiax API Key：
 3. 在 Wtonec 设置页填写并保存。
 4. 微信和 QQ 通过受控的加密配置 Bridge 使用同一份 Key；Bridge 不可用时使用本地加密缓存。
 
-系统 TTS、本地语音包和公开在线样例不读取 Tiax Key。文档、截图和日志中统一使用 `YOUR_API_KEY`，请勿提交真实 Key。
+系统 TTS、本地语音包和公开在线样例不读取 Tiax Key。安全页可额外配置 OpenAI-compatible 或其他第三方 API 的 endpoint、Key 与模型列表；这些凭据只在本地以 Keystore 加密密文保存。文档、截图和日志中统一使用 `YOUR_API_KEY`，请勿提交真实 Key。
 
 ## 使用流程
 
@@ -90,7 +94,8 @@ Fish Audio、轻颜和克隆音色需要自己的 Tiax API Key：
 - [数据目录](docs/STORAGE.md)
 - [隐私说明](docs/PRIVACY.md)
 - [常见问题](docs/TROUBLESHOOTING.md)
-- [Release v1.6.8](docs/RELEASE_1.6.8.md)
+- [Release v1.6.9](docs/RELEASE_1.6.9.md)
+- [Release v1.6.8（历史）](docs/RELEASE_1.6.8.md)
 - [Release v1.6.7（历史）](docs/RELEASE_1.6.7.md)
 - [Release v1.5.11（历史）](docs/RELEASE_1.5.11.md)
 - [免责声明](docs/DISCLAIMER.md)
