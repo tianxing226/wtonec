@@ -2,20 +2,6 @@
 
 Wtonec 是一个面向微信与 QQ 的 Android LSPosed/Xposed 双宿主语音模块。单个 APK 同时声明微信 `com.tencent.mm` 和 QQ `com.tencent.mobileqq` 作用域，在聊天页面提供悬浮球和语音面板。
 
-## 当前版本
-
-- 版本：`1.6.9`
-- versionCode：`698`
-- applicationId：`dev.wtonec`
-- 主推 APK：`Wtonec-v1.6.9-vc698-standard-universal-dual-host-release-hardened.apk`
-- ABI：`arm64-v8a`、`armeabi-v7a`
-- minSdk / targetSdk：`28 / 37`
-- Standard APK SHA-256：`2FDFD019D603234A1049077D95BE248BD27503CAF72BE5D7258624267A782A26`
-- Standard APK 大小：`13,973,520 bytes`
-- Release 签名证书 SHA-256：`BFC2894D0996204A0B6A629C4F9020116098ED7EAF22DD27391051B5BAB704E9`
-
-v1.6.9 发布 Standard Universal Hardened 正式签名 APK，目标为微信 `com.tencent.mm` 与 QQ `com.tencent.mobileqq` 双宿主。当前静态测试记录 195 个测试套件、796 项测试、0 failures/errors/skipped，Lint 73 warnings / 0 errors，第一方 R8 重命名比例 97.9976%。两台 MuMu Android 15 实例已安装并校验同一 APK；宿主面板、ACK、生成与发送矩阵及 QQ 缺包项目仍按报告标记为 `PENDING_DEVICE`。完整变更见 [v1.6.9 发布说明](docs/RELEASE_1.6.9.md)。
-
 ## 主要功能
 
 - **微信模块**：微信聊天页悬浮球、语音模式长按入口、预设/克隆/语音包/设置面板。
