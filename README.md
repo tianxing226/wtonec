@@ -14,12 +14,6 @@ Wtonec 是一个面向微信与 QQ 的 Android LSPosed/Xposed 双宿主语音模
 - API Key 加密保存、统一配置快照、共享配置 Bridge、DEX 缓存、运行日志和本地安全证据页。
 - 156 个随 APK 打包的本地悬浮窗图标、自定义图标导入和微信/QQ 独立持久化。
 - 液态玻璃、Miuix 浅色、AMOLED 深色及扩展面板主题；应用界面主题与语音面板风格相互独立。
-- v1.6.9：液态玻璃光学材质采用背景采样、模糊、surface tint、描边高光和软件 acrylic fallback 分层渲染，避免根节点透明穿透。
-- v1.6.9：统一 canonical 配置快照按 revision/CAS 原子保存，微信与 QQ 通过失效通知主动拉取，宿主不再逐字段轮询。
-- v1.6.9：直连源站网络配置移除旧 CDN 过滤路径；聊天入口增加重绑和会话校验保护。
-- v1.6.9：Fish Audio 目录更新到 296 项并包含新增 291–305 音色；轻颜免费、系统 TTS、MiniMax 不显示快捷语气标签，MiniMax emotion 与标签分离并显示参考价 0.2 元/次。
-- v1.6.9：安全页支持配置 OpenAI-compatible/第三方 API 地址、Key 与模型发现；密钥仅以 Keystore 加密密文保存。
-- v1.6.9：新增 ElevenLabs 文字转语音音色区和音色管理；收到的语音可从长按菜单提交到 ElevenLabs 克隆流程，返回的 Voice ID 保存到对应区域。
 
 ## 安装与激活
 
