@@ -1,0 +1,2 @@
+ac1cc6beeee1b3eb8084e21848f335d2723a18b7341a1a7ddd0bba14b8f7076f  Wtonec-v1.7.2-vc701-standard-universal-release-hardened.apk
+4e6277223c2b45dd5f2bf87271c7b5467af63b52e8c7ef8439b2e534bdfb7f4c  Wtonec-v1.7.2-vc701-legacy-universal-release-hardened.apk

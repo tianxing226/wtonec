@@ -1,6 +1,6 @@
 # Wtonec 文档
 
-Wtonec `1.6.9 (698)` 是一个面向微信与 QQ 的 LSPosed/Xposed 双宿主语音模块，applicationId 为 `dev.wtonec`。
+Wtonec `1.7.2 (701)` 是一个面向微信与 QQ 的 LSPosed/Xposed 双宿主语音模块，applicationId 为 `dev.wtonec`。
 
 建议按以下顺序阅读：
 
@@ -11,6 +11,9 @@ Wtonec `1.6.9 (698)` 是一个面向微信与 QQ 的 LSPosed/Xposed 双宿主语
 5. [故障排查](TROUBLESHOOTING.md)
 
 其他资料：
+
+- [v1.7.2 发布说明](RELEASE_1.7.2.md)
+- [v1.7.1 发布说明（历史）](RELEASE_1.7.1.md)
 
 - [数据目录、备份与清理](STORAGE.md)
 - [隐私与网络请求](PRIVACY.md)
@@ -36,4 +39,6 @@ QQ：com.tencent.mobileqq
 /storage/emulated/0/Android/data/com.tencent.mobileqq/Wtonec/
 ```
 
-v1.6.9 静态证据记录 195 个测试套件、796 项测试、Lint 73 warnings / 0 errors，APK 静态审计通过；微信/QQ 宿主面板、ACK、生成发送和具体版本兼容性继续按设备矩阵记录。两台 MuMu Android 15 实例的安装包 SHA-256 与发布产物一致，QQ 设备项因未安装 QQ 保持 `PENDING_DEVICE`。
+历史 v1.6.9 静态证据记录 195 个测试套件、796 项测试、Lint 73 warnings / 0 errors，APK 静态审计通过；微信/QQ 宿主面板、ACK、生成发送和具体版本兼容性继续按设备矩阵记录。两台 MuMu Android 15 实例的安装包 SHA-256 与发布产物一致，QQ 设备项因未安装 QQ 保持 `PENDING_DEVICE`。
+
+当前 v1.7.2 测试与验收范围见本版发布说明，勿将历史设备状态用于本版结论。
