@@ -1,44 +1,28 @@
-# Wtonec 文档
+# Wtonec 使用说明
 
-Wtonec `1.7.2 (701)` 是一个面向微信与 QQ 的 LSPosed/Xposed 双宿主语音模块，applicationId 为 `dev.wtonec`。
+Wtonec 为微信、QQ、小红书和抖音提供文字转语音、语音包、语音播报、音色克隆和表情包功能。
 
-建议按以下顺序阅读：
+支持数百款音色、面板数据共享和液态玻璃主题。**所有音色和功能均免费，无需充值。** 在线音色按界面提示配置自己的 API Key。
 
-1. [安装与首次启动](GETTING_STARTED.md)
-2. [微信与 QQ 双宿主说明](DUAL_HOST.md)
-3. [API Key 获取与配置](API_KEY.md)
+当前版本：**1.7.4（703）**；包名：`dev.wtonec.final`。需要 Android 9 及以上和可用的 LSPosed/Xposed 环境，支持 ARM64 / ARMv7。
+
+## 从这里开始
+
+1. [安装与首次使用](GETTING_STARTED.md)
+2. [微信 / QQ / 小红书 / 抖音适配说明](DUAL_HOST.md)
+3. [API Key 配置](API_KEY.md)
 4. [功能使用](USAGE.md)
-5. [故障排查](TROUBLESHOOTING.md)
+5. [常见问题](TROUBLESHOOTING.md)
 
-其他资料：
+## 其他说明
 
-- [v1.7.2 发布说明](RELEASE_1.7.2.md)
-- [v1.7.1 发布说明（历史）](RELEASE_1.7.1.md)
+- [1.7.4 更新内容](RELEASE_1.7.4.md)
+- [备份与清理](STORAGE.md)
+- [隐私与联网说明](PRIVACY.md)
+- [使用须知](DISCLAIMER.md)
+- [下载地址与安装包校验](XPOSED_REPOSITORY.md)
+- [公开仓库内容范围](PUBLIC_SOURCE_SCOPE.md)
 
-- [数据目录、备份与清理](STORAGE.md)
-- [隐私与网络请求](PRIVACY.md)
-- [使用说明与责任边界](DISCLAIMER.md)
-- [v1.6.9 发布说明](RELEASE_1.6.9.md)
-- [v1.6.8 发布说明（历史）](RELEASE_1.6.8.md)
-- [v1.6.7 发布说明（历史）](RELEASE_1.6.7.md)
-- [v1.5.11 发布说明（历史）](RELEASE_1.5.11.md)
-- [公开样例范围](PUBLIC_SOURCE_SCOPE.md)
-- [Xposed 仓库与版本规则](XPOSED_REPOSITORY.md)
+[官网](https://tianxing226.github.io/wtonec/) · [使用教程](http://i8c.cn/VpGwB) · [GitHub 下载](https://github.com/tianxing226/wtonec/releases/latest) · [Xposed 仓库下载](https://github.com/Xposed-Modules-Repo/dev.wtonec/releases/latest)
 
-宿主作用域：
-
-```text
-微信：com.tencent.mm
-QQ：com.tencent.mobileqq
-```
-
-宿主数据目录：
-
-```text
-/storage/emulated/0/Android/data/com.tencent.mm/Wtonec/
-/storage/emulated/0/Android/data/com.tencent.mobileqq/Wtonec/
-```
-
-历史 v1.6.9 静态证据记录 195 个测试套件、796 项测试、Lint 73 warnings / 0 errors，APK 静态审计通过；微信/QQ 宿主面板、ACK、生成发送和具体版本兼容性继续按设备矩阵记录。两台 MuMu Android 15 实例的安装包 SHA-256 与发布产物一致，QQ 设备项因未安装 QQ 保持 `PENDING_DEVICE`。
-
-当前 v1.7.2 测试与验收范围见本版发布说明，勿将历史设备状态用于本版结论。
+旧版 `RELEASE_*.md` 仅记录对应版本的历史信息，当前功能、包名与使用方式以本页链接的说明为准。

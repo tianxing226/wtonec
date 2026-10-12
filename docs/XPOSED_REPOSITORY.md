@@ -1,31 +1,35 @@
-# Xposed 官方仓库
+# 下载地址与安装包校验
 
-Wtonec 已收录到 https://github.com/Xposed-Modules-Repo/dev.wtonec 。该仓库用于 Xposed 模块中心展示和 APK 分发；https://github.com/tianxing226/wtonec 用于 GitHub Pages、使用文档和项目归档。
+Wtonec 的两个公开仓库提供同一版本的安装包与使用说明：
 
-## 当前版本
+- [项目仓库](https://github.com/tianxing226/wtonec) · [最新下载](https://github.com/tianxing226/wtonec/releases/latest)
+- [Xposed 模块仓库](https://github.com/Xposed-Modules-Repo/dev.wtonec) · [最新下载](https://github.com/Xposed-Modules-Repo/dev.wtonec/releases/latest)
+- [官网](https://tianxing226.github.io/wtonec/) · [使用教程](http://i8c.cn/VpGwB)
 
-- Xposed Tag：701-1.7.2
-- 项目 Tag：v1.7.2
-- versionName：1.7.2
-- versionCode：698
-- applicationId：dev.wtonec
-- 微信作用域：com.tencent.mm
-- QQ 作用域：com.tencent.mobileqq
-- 推荐 APK：Wtonec-v1.7.2-vc698-standard-universal-dual-host-release-hardened.apk
-- Standard 大小：13,973,520 bytes
-- Standard SHA-256：2FDFD019D603234A1049077D95BE248BD27503CAF72BE5D7258624267A782A26
-- 签名证书 SHA-256：BFC2894D0996204A0B6A629C4F9020116098ED7EAF22DD27391051B5BAB704E9
+## 1.7.4 安装包
 
-## 发布规则
+| 项目 | 内容 |
+|---|---|
+| 版本 | 1.7.4 |
+| 版本编号 | 703 |
+| 包名 | `dev.wtonec.final` |
+| 系统 | Android 9 及以上 |
+| 架构 | ARM64 / ARMv7 通用包 |
+| 文件名 | `Wtonec-1.7.4-703-universal.apk` |
+| 大小 | 14,661,356 字节 |
+| 项目发布标签 | `v1.7.4` |
+| Xposed 发布标签 | `703-1.7.4` |
 
-1. Xposed Tag 使用 versionCode-versionName，项目 Tag 使用 vversionName。
-2. 两个公开仓库的 v1.7.2 Release 使用同一 Standard Universal Hardened APK。
-3. 私有实现、Keystore、签名配置、API Key、mapping、日志和缓存保留在私有工程。
-4. README 与仓库描述同时包含微信模块、QQ 模块、LSPosed/Xposed 模块和两个标准包名。
+SHA-256：
 
-## 证据边界
+```text
+c123015e84be483914e7e57ac08687217c3e94be3b9577172cb97f2c7371e7a1
+```
 
-当前最终报告记录 195 个测试套件、796 项测试、0 failures/errors/skipped，Lint 73 warnings / 0 errors，APK 静态审计通过，第一方 R8 重命名比例 97.9976%。两台 MuMu Android 15 实例已安装并校验 APK；微信/QQ 具体宿主面板、ACK、生成发送和版本兼容性按报告标记为 `PENDING_DEVICE`，QQ 因设备未安装包而保留待验。
+安装包下载完成后，可核对文件名、大小与 SHA-256。两个仓库的本版安装包应具有相同校验值。
 
-Legacy Universal 资产继续保留在 696-1.6.7 Release：
-https://github.com/Xposed-Modules-Repo/dev.wtonec/releases/tag/696-1.6.7
+## 发布内容
+
+本次公开更新仅包含安装包、说明文档和演示图片；安装包放在 Releases 下载区。私有源码、密钥、签名文件、运行日志和个人数据不作为本次公开上传内容。
+
+小红书适配 9.49.1，抖音适配 40.7.0，其他版本请自行测试。演示图片用于展示界面，不能代替所有应用版本的收发兼容性验证。

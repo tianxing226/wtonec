@@ -1,112 +1,61 @@
 # Wtonec
 
-Wtonec 是一个面向微信与 QQ 的 Android LSPosed/Xposed 双宿主语音模块。单个 APK 同时声明微信 `com.tencent.mm` 和 QQ `com.tencent.mobileqq` 作用域，在聊天页面提供悬浮球和语音面板。
+**微信 / QQ / 小红书 / 抖音的语音与表情包工具：把文字变成语音，在聊天中轻松使用。**
 
-## 当前版本：v1.7.2 / 701
+支持文字转语音、语音包、语音播报、克隆音色、表情包等功能，上百款音色可选。**所有音色和功能均免费使用，无需充值。**
 
-修复新版微信 8.0.78 的语音发送签名兼容问题，保留旧版适配分支与其它功能。提供 Standard / Legacy 两个正式加固 APK。
+[⬇ 下载 1.7.4](https://github.com/tianxing226/wtonec/releases/tag/v1.7.4) · [官网](https://tianxing226.github.io/wtonec/) · [使用教程](http://i8c.cn/VpGwB)
 
-- [v1.7.2 更新说明与校验值](docs/RELEASE_1.7.2.md)
-- [下载 Standard / Legacy 正式安装包](https://github.com/tianxing226/wtonec/releases/tag/v1.7.2)
+## 有哪些功能
 
-## 主要功能
+- **文字转语音**：选择喜欢的音色，输入文字，试听后生成并发送。
+- **语音包**：导入、收藏、管理常用语音，聊天时快速发送。
+- **语音播报**：按设置朗读通知消息。
+- **克隆音色**：创建或使用自己的克隆音色。
+- **表情包**：管理常用表情，在私聊和群聊中使用。
+- **个性化面板**：液态玻璃、多种主题、悬浮球和自定义图标。
 
-- **微信模块**：微信聊天页悬浮球、语音模式长按入口、预设/克隆/语音包/设置面板。
-- **QQ 模块**：QQ NT 聊天页悬浮球、QQ 语音发送链、私聊和群聊适配框架。
-- **v1.7.1**：修复 QQ 私聊/群聊液态玻璃一致性、悬浮窗聊天路由和 DEX 缓存恢复，并加入 Release 原生层加固。
-- Fish Audio 预设音色、克隆音色 ID、轻颜音色、ElevenLabs 音色和 Android 系统 TTS。
-- 文字转语音、试听、生成、保存、生成并发送。
-- 本地语音包导入、搜索、排序、试听、重命名、导出、删除和发送。
-- 在线语音目录、下载、缓存、取消、重试、试听和发送。
-- MP3/其他音频本地解码、Tencent SILK 兼容编码和宿主语音发送。
-- API Key 加密保存、统一配置快照、共享配置 Bridge、DEX 缓存、运行日志和本地安全证据页。
-- 156 个本地悬浮窗图标、自定义图标导入和微信/QQ 。
-- 液态玻璃、Miuix 浅色、AMOLED 深色及扩展面板主题；应用界面主题与语音面板风格相互独立。
+## 1.7.4 更新一览
 
-## 安装与激活
+1. 优化 API Key 保存，修复反复要求保存的问题。
+2. 优化各软件面板之间的数据同步，使用更流畅。
+3. 优化部分权限处理。
+4. 修复液态玻璃出现黑色子块、内容看不清的问题。
+5. 修复开启 VPN 或代理时可能出现的语音发送失败。
+6. 修复语音发送成功后的回执提示。
+7. 新增小红书私聊、群聊的语音发送和表情包功能，适配 **9.49.1**。
+8. 新增抖音私聊、群聊的语音发送和表情包功能，适配 **40.7.0**。
+9. 小红书、抖音的其他版本请自行测试。
+10. 更换软件包名为 `dev.wtonec.final`，安装后请重新启用模块。
+11. 所有音色和功能均免费使用，无需充值。
 
-1. 从 [项目 Release](https://github.com/tianxing226/wtonec/releases) 或 [Xposed 官方 Release](https://github.com/Xposed-Modules-Repo/dev.wtonec/releases) 下载 APK。
-2. 在 LSPosed 中启用 Wtonec。
-3. 根据使用目标勾选作用域：
-   - 微信：`com.tencent.mm`
-   - QQ：`com.tencent.mobileqq`
-4. 完全结束对应的微信或 QQ 进程后重新启动。
-5. 首次启动按提示完成对应宿主的 DEX 匹配，再完整重启一次宿主。
-6. 进入私聊或群聊，点击悬浮球或使用宿主语音入口打开面板。
+## 软件演示
 
-微信和 QQ 的 Hook、DEX 缓存、会话状态和宿主目录分别隔离。只使用微信时可以只勾选微信作用域，只使用 QQ 时可以只勾选 QQ 作用域。
+以下为 1.7.4 在 MuMu 模拟器中的实际界面。
 
-## API Key
+<p>
+  <img src="assets/screenshots/1.7.4/home.png" width="240" alt="Wtonec 首页与模块状态">
+  <img src="assets/screenshots/1.7.4/floating-icons.png" width="240" alt="Wtonec 悬浮窗图标库">
+  <img src="assets/screenshots/1.7.4/settings.png" width="240" alt="Wtonec 设置界面">
+  <img src="assets/screenshots/1.7.4/announcement-settings.png" width="240" alt="Wtonec 语音播报与面板外观设置">
+</p>
 
-Fish Audio、轻颜和克隆音色需要自己的 Tiax API Key：
+## 安装使用
 
-1. 访问 [Tiax 官网](https://www.tiax.pw/) 注册账号。
-2. 登录 [Tiax 用户中心](https://www.tiax.pw/user/) 获取 API Key。
-3. 在 Wtonec 设置页填写并保存。
-4. 微信和 QQ 通过受控的加密配置 Bridge 使用同一份 Key；Bridge 不可用时使用本地加密缓存。
+1. 准备 **Android 9+** 和已配置的 **LSPosed/Xposed** 环境，下载并安装 APK。
+2. 在框架中启用 Wtonec，按需勾选微信、QQ、小红书、抖音。
+3. 完全结束并重启对应应用，按提示完成初始化，在聊天页打开悬浮球面板。
+4. 在线音色按提示填写自己的 API Key；系统 TTS 和本地语音包无需 Key。
 
-系统 TTS、本地语音包和公开在线样例不读取 Tiax Key。安全页可额外配置 OpenAI-compatible 或其他第三方 API 的 endpoint、Key 与模型列表；这些凭据只在本地以 Keystore 加密密文保存。文档、截图和日志中统一使用 `YOUR_API_KEY`，请勿提交真实 Key。
+**旧版升级：**本版包名改为 `dev.wtonec.final`，会作为新应用安装。先导出需要保留的语音包，再启用新版、停用旧版模块并重新勾选作用域；旧版数据不会自动迁移。
 
-## 使用流程
+小红书适配 **9.49.1**，抖音适配 **40.7.0**；其他版本请自行测试。完整安装步骤见[快速入门](docs/GETTING_STARTED.md)，文件校验见[更新说明](docs/RELEASE_1.7.4.md)。
 
-### 微信模块
+## 链接与说明
 
-进入微信聊天页，长按左下角的语音/键盘切换图标，或使用已启用的悬浮球打开面板。确认面板顶部显示正确的当前会话后，再试听、生成或发送。
+- [GitHub 发布仓库](https://github.com/tianxing226/wtonec) · [Xposed 模块仓库](https://github.com/Xposed-Modules-Repo/dev.wtonec)
+- [使用文档](docs/README.md) · [常见问题](docs/TROUBLESHOOTING.md) · [隐私说明](docs/PRIVACY.md)
 
-### QQ 模块
+本仓库用于发布安装包、说明文档和演示图片。本次更新不包含应用源码、签名私钥、API Key 或私人备份。
 
-进入 QQ NT 私聊或群聊，点击悬浮球，或使用已适配的 QQ 语音入口打开面板。发送前确认当前 QQ 会话和账号信息。QQ 版本差异可能影响 AIO、Contact、回调和语音气泡行为，实际兼容性以目标设备验证结果为准。
-
-### 音频格式
-
-接口返回 MP3 或其他音频后，Wtonec 在本地完成解码、单声道处理、24 kHz 重采样和 Tencent SILK 编码，再交给微信或 QQ 的正常语音发送链。直接修改文件扩展名不构成兼容格式转换。
-
-## 数据目录
-
-宿主副本按包名分开：
-
-```text
-/storage/emulated/0/Android/data/com.tencent.mm/Wtonec/
-/storage/emulated/0/Android/data/com.tencent.mobileqq/Wtonec/
-```
-
-语音包、索引、日志、崩溃诊断、DEX 缓存和任务缓存的详细说明见 [数据目录、备份与清理](docs/STORAGE.md)。模块还维护受签名保护的 canonical 语音库，通过 PFD/Binder 与两个宿主同步。
-
-## 文档
-
-- [文档导航](docs/README.md)
-- [安装与首次启动](docs/GETTING_STARTED.md)
-- [双宿主说明](docs/DUAL_HOST.md)
-- [功能使用](docs/USAGE.md)
-- [API Key](docs/API_KEY.md)
-- [数据目录](docs/STORAGE.md)
-- [隐私说明](docs/PRIVACY.md)
-- [常见问题](docs/TROUBLESHOOTING.md)
-- [Release v1.6.9](docs/RELEASE_1.6.9.md)
-- [Release v1.6.8（历史）](docs/RELEASE_1.6.8.md)
-- [Release v1.6.7（历史）](docs/RELEASE_1.6.7.md)
-- [Release v1.5.11（历史）](docs/RELEASE_1.5.11.md)
-- [免责声明](docs/DISCLAIMER.md)
-- [Xposed 官方仓库与版本规则](docs/XPOSED_REPOSITORY.md)
-- [公开样例范围](docs/PUBLIC_SOURCE_SCOPE.md)
-
-## 项目入口
-
-- 项目仓库：[tianxing226/wtonec](https://github.com/tianxing226/wtonec)
-- Xposed 官方模块仓库：[Xposed-Modules-Repo/dev.wtonec](https://github.com/Xposed-Modules-Repo/dev.wtonec)
-- GitHub Pages：[tianxing226.github.io/wtonec](https://tianxing226.github.io/wtonec/)
-- 官网：[tiax.pw](https://www.tiax.pw/)
-
-## 公开范围
-
-公共仓库提供项目介绍、使用文档、截图、静态网站、少量独立 Kotlin 样例和 Release APK。正式 Hook、DEX matcher、微信/QQ 内部调用、编解码、JNI/Rust、Bridge、签名和加固实现保留在私有工程。
-
-## 免责声明
-
-Wtonec 仅供学习、研究与技术交流使用。使用者应遵守所在地法律法规、软件平台规则及第三方服务条款，并自行承担安装、配置、升级、内容来源和使用行为产生的责任。
-
-本项目与微信、QQ、腾讯、LSPosed、Fish Audio、Tiax 及其他内容来源不存在隶属、合作、官方授权或背书关系，相关名称与商标归各权利主体所有。严禁用于侵犯隐私、传播侵权内容、欺诈、骚扰、批量滥用、干扰平台服务或其他违法用途。第三方接口、内容许可、价格和可用性以对应服务方规则为准。详细内容见 [使用说明与责任边界](docs/DISCLAIMER.md)。
-
-## 反馈与隐私
-
-反馈前请遮盖 API Key、Token、签名 URL、微信/QQ 账号、联系人、会话标识、输入文字和本地路径。Wtonec 不自动上传日志、安全扫描报告或本地语音包。
+本项目与微信、QQ、小红书、抖音官方无隶属关系。请遵守平台规则，并在分享截图或日志前遮盖账号、聊天内容和密钥。

@@ -1,65 +1,34 @@
-# 安装与首次启动
+# 安装与首次使用
 
-## 准备
+Wtonec 可以在微信、QQ、小红书和抖音聊天中使用文字转语音、语音包和表情包。
 
-- Android 9（API 28）及以上。
-- LSPosed 已正常安装。
-- 微信标准包名：`com.tencent.mm`。
-- QQ 标准包名：`com.tencent.mobileqq`。
-- 从 [Xposed 官方 Releases](https://github.com/Xposed-Modules-Repo/dev.wtonec/releases) 下载最新 Standard Universal Hardened APK。
+## 安装条件
 
-Fish Audio、轻颜、ElevenLabs 文字转语音和克隆音色需要网络及自己的 Tiax API Key；Android 系统 TTS、本地语音包和公开在线样例不读取该 Key。安全页还支持 OpenAI-compatible/第三方 endpoint、Key 与模型配置，凭据使用 Android Keystore 加密保存。
+- Android 9 及以上，ARM64 / ARMv7 设备。
+- 已安装并能正常使用 LSPosed/Xposed。
+- 使用标准版微信、QQ、小红书或抖音；[适配版本与包名](DUAL_HOST.md)。
 
-## 安装与作用域
+## 安装步骤
 
-1. 安装 Wtonec APK。
-2. 打开 LSPosed，在模块列表中启用 Wtonec。
-3. 根据需要勾选一个或两个作用域：
-   - 微信模块：`com.tencent.mm`
-   - QQ 模块：`com.tencent.mobileqq`
-4. 完全结束已勾选宿主的全部进程。
-5. 重新打开微信或 QQ。
+1. 从 [GitHub](https://github.com/tianxing226/wtonec/releases/latest) 或 [Xposed 仓库](https://github.com/Xposed-Modules-Repo/dev.wtonec/releases/latest) 下载 `Wtonec-1.7.4-703-universal.apk` 并安装。
+2. 打开模块管理器，启用新版 Wtonec。
+3. 在作用域中勾选需要使用的应用：微信、QQ、小红书、抖音，可以按需选择。
+4. 完全关闭所选应用后重新打开。
+5. 如果出现适配匹配提示，按页面说明完成匹配，再重启对应应用。
 
-一个 APK 同时支持两个宿主。只使用微信时勾选微信即可，只使用 QQ 时勾选 QQ 即可。
+**1.7.4 的包名已改为 `dev.wtonec.final`。** 新版可能与旧版同时存在；先导出旧版的重要语音，再启用新版并关闭旧版模块，避免同时加载。不要在备份前清除旧版数据。
 
-## 首次 DEX 匹配
+## 第一次使用
 
-微信和 QQ 使用独立的 DEX 指纹与缓存：
+1. 进入私聊或群聊，点击 Wtonec 悬浮球打开面板。微信也可切换到语音输入后长按语音按钮。
+2. 确认面板对应当前聊天，选择音色并输入文字。
+3. 在线音色如提示需要 Key，先到“设置”保存自己的 [API Key](API_KEY.md)。
+4. 先试听，确认后保存或发送。
 
-1. 打开目标宿主。
-2. 出现 DEX 更新页后开始匹配。
-3. 等待对应宿主的必需项目完成。
-4. 完全结束该宿主并再次启动。
-5. 确认后续冷启动可以回读缓存。
+**所有音色和功能均免费，无需充值。** 系统 TTS、本地语音包不需要 Tiax API Key；在线生成、克隆和在线素材需要可用网络。
 
-宿主升级、降级、热更新或 split APK 发生变化后，Wtonec 会按新指纹重新匹配。匹配期间保持目标宿主在前台。
+## 更新以后
 
-## 打开语音面板
+重新检查模块作用域，并完全关闭、重启已启用的应用。若应用本身更新后出现适配提示，重新完成匹配。
 
-### 微信
-
-1. 进入私聊或群聊。
-2. 将微信输入栏切换到语音模式。
-3. 长按微信语音按钮，或点击已启用的悬浮球。
-4. 确认面板顶部显示正确的微信会话。
-
-### QQ
-
-1. 进入 QQ NT 私聊或群聊。
-2. 点击聊天页悬浮球，或使用已适配的 QQ 语音入口。
-3. 确认面板顶部显示正确的 QQ 会话和账号。
-
-QQ 的 AIO、Contact 和消息接口会随版本变化。当前 APK 已包含双宿主 scope 和 QQ 发送适配，具体版本的实际发送结果以真机验证为准。
-
-## 首次生成
-
-- Fish Audio/轻颜：在“设置”中保存自己的 Tiax API Key。
-- ElevenLabs：在“预设”中选择 ElevenLabs，刷新或填写 Voice ID；收到语音长按菜单中的 ElevenLabs 克隆结果会自动保存到该列表。
-- AI 安全扫描：在“安全”中填写第三方 API 地址和 Key，读取模型列表后选择模型；仅在本地执行扫描并写入本地报告。
-- 系统 TTS：直接选择“系统 TTS”，可调整语速、音调或打开系统语音设置。
-- 本地语音包：导入受支持音频后即可试听、保存或发送。
-- 在线语音包：选择来源、试听、下载、保存或直接发送；来源状态随对应站点变化。
-
-## 更新
-
-安装新版 APK 后，完整结束并重启已启用的每个宿主。升级前建议导出重要 MP3，并记录版本、versionCode、APK SHA-256 和签名证书摘要。
+[完整教程](http://i8c.cn/VpGwB) · [功能说明](USAGE.md) · [常见问题](TROUBLESHOOTING.md)

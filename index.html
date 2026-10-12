@@ -3,317 +3,69 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#05A5FA">
-  <meta name="description" content="Wtonec Android LSPosed/Xposed 微信与 QQ 双宿主语音模块：文字转语音、Fish Audio、系统 TTS、在线与本地语音包。">
-  <meta name="keywords" content="Wtonec,微信模块,QQ模块,LSPosed,Xposed,文字转语音,Fish Audio,语音包,Tencent SILK">
-  <title>Wtonec · 微信 / QQ 双宿主语音工作台</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%2305A5FA'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial' font-size='28' font-weight='700' fill='white'%3EWT%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="theme-color" content="#f3f7fc">
+  <meta name="description" content="Wtonec 是微信、QQ、小红书、抖音的语音与表情包工具，支持文字转语音、语音包、语音播报、克隆音色，上百款音色和全部功能免费使用。">
+  <meta name="keywords" content="Wtonec,微信,QQ,小红书,抖音,文字转语音,语音包,语音播报,克隆音色,表情包,LSPosed,Xposed,WeChat,Xiaohongshu,Douyin">
+  <title>Wtonec · 微信 / QQ / 小红书 / 抖音语音工具</title>
+  <style>
+    :root{color-scheme:light;--ink:#18273d;--muted:#586a80;--blue:#1764dc;--line:#dde5f1}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f3f7fc;color:var(--ink);font:16px/1.8 system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
+    a{color:var(--blue);text-underline-offset:4px}a:hover{color:#08439c}header,main,footer{max-width:1120px;margin:auto;padding-left:28px;padding-right:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:24px;padding-bottom:24px;border-bottom:1px solid var(--line)}.brand{font-size:23px;font-weight:800;color:var(--ink);text-decoration:none}.nav{display:flex;gap:24px;font-size:14px}.nav a{text-decoration:none}
+    .hero{padding:80px 0 56px;max-width:870px}.eyebrow{color:var(--blue);font-size:13px;font-weight:700;letter-spacing:.14em}h1{font-size:clamp(38px,6vw,64px);line-height:1.22;letter-spacing:-.04em;margin:20px 0 24px}h2{font-size:28px;line-height:1.4;margin:0 0 12px}h3{font-size:18px;margin:0 0 8px}p{margin:0 0 16px}.lead{font-size:20px;color:var(--muted);max-width:760px}.free{display:inline-block;background:#dff2e8;color:#246345;padding:5px 14px;border-radius:99px;font-size:14px;font-weight:600}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 16px}.button{display:inline-flex;align-items:center;justify-content:center;padding:12px 23px;border-radius:12px;background:var(--blue);color:white;text-decoration:none;font-weight:700}.button:hover{background:#084fae;color:white}.button.secondary{background:white;color:var(--ink);border:1px solid var(--line)}.note{font-size:14px;color:var(--muted)}
+    section{padding:40px 0}.section-intro{color:var(--muted);margin-bottom:24px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:white;border:1px solid var(--line);border-radius:18px;padding:24px}.card p{color:var(--muted);font-size:15px;margin:0}.card .number{display:block;color:var(--blue);font-size:13px;font-weight:700;margin-bottom:12px}.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.gallery figure{margin:0}.gallery img{display:block;width:100%;border:1px solid var(--line);border-radius:18px;background:white}.gallery figcaption{text-align:center;font-size:14px;color:var(--muted);padding:12px 0}.updates{background:white;border:1px solid var(--line);border-radius:20px;padding:28px 32px}.updates ol{padding-left:22px;margin:0}.updates li+li{margin-top:8px}.install{display:grid;grid-template-columns:1fr 1fr;gap:24px}.install ol{padding-left:22px}.callout{background:#e8effb;border-radius:16px;padding:24px}.callout p:last-child{margin-bottom:0}footer{margin-top:40px;padding-top:28px;padding-bottom:36px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}.footer-links{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:12px}code{font-size:.92em;word-break:break-word}a:focus-visible{outline:3px solid #79a8f2;outline-offset:4px}
+    @media(max-width:760px){header,main,footer{padding-left:20px;padding-right:20px}.nav{gap:14px}.nav .optional{display:none}.hero{padding:52px 0 28px}.lead{font-size:18px}.grid{grid-template-columns:repeat(2,1fr)}.install{grid-template-columns:1fr}.gallery{gap:10px}.gallery img{border-radius:10px}.gallery figcaption{font-size:12px}.updates{padding:20px}section{padding:30px 0}}
+    @media(max-width:460px){.grid{grid-template-columns:1fr}.card{padding:20px}.gallery{grid-template-columns:1fr;max-width:290px;margin:auto}.actions .button{flex:1}.nav{font-size:13px}h1{font-size:38px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
 </head>
 <body>
-  <div class="scroll-progress" aria-hidden="true"><span></span></div>
-
-  <header class="site-header" data-header>
-    <a class="brand" href="#top" aria-label="Wtonec 首页">
-      <span class="brand-mark" aria-hidden="true">WT</span>
-      <span class="brand-name">Wtonec</span>
-    </a>
-    <nav class="site-nav" aria-label="页面导航">
-      <a href="#quickstart">教程</a>
-      <a href="#features">能力</a>
-      <a href="#showcase">界面</a>
-      <a href="#pipeline">流程</a>
-      <a href="#security">安全</a>
-      <a href="#storage">数据</a>
-    </nav>
-    <a class="header-repo" data-link="github" href="https://github.com/tianxing226/wtonec" target="_blank" rel="noreferrer">
-      项目仓库 <span aria-hidden="true">↗</span>
-    </a>
-  </header>
-
-  <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-grid" aria-hidden="true"></div>
-      <div class="hero-media" aria-hidden="true">
-        <img class="hero-shot hero-shot-primary" src="assets/wtonec-home.jpg" alt="">
-        <img class="hero-shot hero-shot-secondary" src="assets/wtonec-settings.jpg" alt="">
-      </div>
-
-      <div class="hero-content">
-        <p class="hero-kicker"><span></span> v1.7.2 · Android · LSPosed · WeChat / QQ</p>
-        <h1 id="hero-title">Wtonec</h1>
-        <p class="hero-lead">把文字，变成可以发送到微信或 QQ 会话的语音。</p>
-        <p class="hero-copy">一个 APK 覆盖微信模块与 QQ 模块，把 Fish Audio、系统 TTS、在线目录、本地语音包和 Tencent SILK 处理集中在同一套聊天面板中。</p>
-        <div class="hero-actions" aria-label="项目入口">
-          <a class="button button-lime" data-link="release" href="https://github.com/tianxing226/wtonec/releases/tag/v1.7.2" target="_blank" rel="noreferrer">
-            <span>下载 v1.7.2</span><span aria-hidden="true">↗</span>
-          </a>
-          <a class="button button-blue" data-link="docs" href="https://github.com/tianxing226/wtonec/tree/main/docs" target="_blank" rel="noreferrer">
-            <span>项目文档</span><span aria-hidden="true">↗</span>
-          </a>
-        </div>
-        <div class="hero-facts" aria-label="技术标签">
-          <span>微信 / QQ 双宿主</span>
-          <span>本地 SILK 编码</span>
-          <span>共享配置与语音库</span>
-        </div>
-      </div>
-
-      <a class="hero-next" href="#features" aria-label="查看 Wtonec 核心能力">
-        <span>探索能力</span><span aria-hidden="true">↓</span>
-      </a>
+  <header><a class="brand" href="#">Wtonec</a><nav class="nav" aria-label="页面导航"><a href="#features">功能</a><a href="#screenshots">演示</a><a href="#updates">更新</a><a class="optional" href="https://github.com/tianxing226/wtonec">GitHub ↗</a></nav></header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">WTONEC 1.7.4 · ANDROID</p>
+      <h1>把文字变成语音，<br>让聊天更有声有色。</h1>
+      <p class="lead">微信 / QQ / 小红书 / 抖音的语音与表情包工具。文字转语音、语音包、语音播报、克隆音色，上百款音色任你选择。</p>
+      <span class="free">所有音色和功能免费使用，无需充值</span>
+      <div class="actions"><a class="button" href="https://github.com/tianxing226/wtonec/releases/tag/v1.7.4">下载 1.7.4 ↗</a><a class="button secondary" href="http://i8c.cn/VpGwB">查看使用教程 ↗</a></div>
+      <p class="note">Android 9+ · ARM64 / ARMv7 · 约 14 MiB · 需要已配置的 LSPosed/Xposed 环境</p>
     </section>
-
-    <section class="signal-band" aria-label="Wtonec 能力摘要">
-      <div class="signal-track">
-        <span>微信模块 + QQ 模块</span><b>+</b>
-        <span>文字转宿主语音</span><b>+</b>
-        <span>预设音色快速切换</span><b>+</b>
-        <span>Fish Audio 与轻颜音色</span><b>+</b>
-        <span>Android 系统 TTS</span><b>+</b>
-        <span>本地语音包</span><b>+</b>
-        <span>MP3 / SILK 音频链</span>
+    <section id="features">
+      <h2>聊天里常用的，都放在一起</h2><p class="section-intro">从选择音色到发送语音，打开面板就能开始。</p>
+      <div class="grid">
+        <article class="card"><span class="number">01 / 文字转语音</span><h3>用喜欢的声音说话</h3><p>选择音色、输入文字，试听满意后生成并发送。</p></article>
+        <article class="card"><span class="number">02 / 语音包</span><h3>常用语音随手发</h3><p>导入、收藏和管理语音包，聊天时快速找到。</p></article>
+        <article class="card"><span class="number">03 / 语音播报</span><h3>让消息读给你听</h3><p>按设置朗读通知消息，使用前开启所需权限。</p></article>
+        <article class="card"><span class="number">04 / 克隆音色</span><h3>保存你的专属声音</h3><p>创建或使用克隆音色，让文字拥有熟悉的声音。</p></article>
+        <article class="card"><span class="number">05 / 表情包</span><h3>表情和语音一起玩</h3><p>管理常用表情，在私聊、群聊中轻松使用。</p></article>
+        <article class="card"><span class="number">06 / 个性化面板</span><h3>换成你喜欢的样子</h3><p>液态玻璃、多种主题、悬浮球和自定义图标。</p></article>
       </div>
     </section>
-
-    <section class="section section-features" id="quickstart" aria-labelledby="quickstart-title">
-      <div class="section-heading reveal">
-        <p class="eyebrow">QUICK START / 01</p>
-        <h2 id="quickstart-title">六步开始使用 Wtonec</h2>
-        <p>从安装到发送第一条语音，按下面顺序完成一次即可。Fish Audio、轻颜和 ElevenLabs 需要自己的 Tiax API Key；系统 TTS 和本地语音包无需 Key。</p>
-      </div>
-
-      <div class="feature-grid">
-        <article class="feature-card feature-card-blue reveal">
-          <span class="feature-index">01</span>
-          <h3>安装并启用</h3>
-          <p>从 <a href="https://github.com/tianxing226/wtonec/releases/tag/v1.7.2" target="_blank" rel="noreferrer">v1.7.2 Release</a> 下载 APK。进入 LSPosed 启用 Wtonec，按需勾选微信 <code>com.tencent.mm</code>、QQ <code>com.tencent.mobileqq</code>。</p>
-          <div class="feature-meta"><span>安装 APK</span><span>微信作用域</span><span>QQ 作用域</span></div>
-        </article>
-        <article class="feature-card feature-card-lime reveal">
-          <span class="feature-index">02</span>
-          <h3>完成 DEX 匹配</h3>
-          <p>完整结束目标宿主后重新打开。微信与 QQ 分别完成自己的 DEX 匹配，成功后再重启对应宿主，后续直接读取独立缓存。</p>
-          <div class="feature-meta"><span>宿主隔离</span><span>开始匹配</span><span>回读缓存</span></div>
-        </article>
-        <article class="feature-card feature-card-dark reveal">
-          <span class="feature-index">03</span>
-          <h3>注册获取 Key</h3>
-          <p>访问 <a href="https://www.tiax.pw/" target="_blank" rel="noreferrer">Tiax 官网</a> 注册账号，登录 <a href="https://www.tiax.pw/user/" target="_blank" rel="noreferrer">用户中心</a>，在 API 密钥管理区域获取自己的 Key。</p>
-          <div class="feature-meta"><span>注册</span><span>用户中心</span><span>API Key</span></div>
-        </article>
-        <article class="feature-card feature-card-coral reveal">
-          <span class="feature-index">04</span>
-          <h3>在聊天页打开面板</h3>
-          <p>微信可长按语音按钮或点击悬浮球；QQ NT 使用聊天页悬浮球或已适配的语音入口，打开同一套“预设 / 克隆 / 语音包 / 设置”面板。</p>
-          <div class="feature-meta"><span>微信长按</span><span>QQ AIO</span><span>悬浮球</span></div>
-        </article>
-        <article class="feature-card feature-card-blue reveal">
-          <span class="feature-index">05</span>
-          <h3>选择语音来源</h3>
-          <p>Fish Audio、轻颜或 ElevenLabs 用户在“设置”中保存自己的 Key；系统 TTS 和本地语音包可以直接使用。</p>
-          <div class="feature-meta"><span>Fish</span><span>轻颜</span><span>ElevenLabs</span></div>
-        </article>
-        <article class="feature-card feature-card-lime reveal">
-          <span class="feature-index">06</span>
-          <h3>生成并发送</h3>
-          <p>输入文字并点击“试听”或“生成并发送”。发送前确认面板顶部显示正确的宿主、账号和目标会话。</p>
-          <div class="feature-meta"><span>试听</span><span>会话复核</span><span>双宿主发送</span></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section section-features" id="features" aria-labelledby="features-title">
-      <div class="section-heading reveal">
-        <p class="eyebrow">CORE CAPABILITIES / 02</p>
-        <h2 id="features-title">共享能力，两套宿主发送链</h2>
-        <p>从输入文字到当前会话，Wtonec 共享选音色、生成、试听、缓存与格式转换，并由微信或 QQ Host Adapter 完成最终发送。</p>
-      </div>
-
-      <div class="feature-grid">
-        <article class="feature-card feature-card-blue reveal">
-          <span class="feature-index">01</span>
-          <h3>在线音色</h3>
-          <p>搜索、收藏和快速切换 Fish Audio、轻颜或 ElevenLabs 音色，也可管理 Fish/ElevenLabs 克隆音色 ID。</p>
-          <div class="feature-meta"><span>Fish</span><span>ElevenLabs</span><span>克隆</span></div>
-        </article>
-        <article class="feature-card feature-card-lime reveal">
-          <span class="feature-index">02</span>
-          <h3>系统 TTS</h3>
-          <p>使用 Android 当前默认语音引擎，支持语速与音调调节，不依赖音色列表或 API Key。</p>
-          <div class="feature-meta"><span>本地</span><span>无需 Key</span><span>语速音调</span></div>
-        </article>
-        <article class="feature-card feature-card-dark reveal">
-          <span class="feature-index">03</span>
-          <h3>本地语音包</h3>
-          <p>导入、搜索、排序、试听、重命名和发送，让常用音频成为随取随用的素材库。</p>
-          <div class="feature-meta"><span>导入</span><span>管理</span><span>发送</span></div>
-        </article>
-        <article class="feature-card feature-card-coral reveal">
-          <span class="feature-index">04</span>
-          <h3>双宿主兼容音频</h3>
-          <p>接口返回音频后在本地完成解码、24 kHz 重采样与 Tencent SILK 编码，再进入微信或 QQ 的语音发送链。</p>
-          <div class="feature-meta"><span>MP3</span><span>Tencent SILK</span><span>微信 / QQ</span></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="workbench-band" aria-labelledby="workbench-title">
-      <div class="workbench-copy reveal">
-        <p class="eyebrow">INTERACTIVE PREVIEW / 03</p>
-        <h2 id="workbench-title">让一句话拥有不同声音</h2>
-        <p>切换生成模式，输入一段文字，查看音频处理过程的界面反馈。</p>
-      </div>
-
-      <div class="voice-workbench reveal" data-workbench>
-        <div class="workbench-toolbar">
-          <div class="segmented" role="group" aria-label="音色模式">
-            <button type="button" class="mode-button is-active" data-mode="预设音色" aria-pressed="true">预设</button>
-            <button type="button" class="mode-button" data-mode="克隆音色" aria-pressed="false">克隆</button>
-            <button type="button" class="mode-button" data-mode="本地语音包" aria-pressed="false">语音包</button>
-          </div>
-          <span class="mode-status" data-mode-status>预设音色</span>
-        </div>
-
-        <label class="text-input-label" for="voice-text">文字内容</label>
-        <textarea id="voice-text" maxlength="120" rows="3" data-voice-text>今天也要用喜欢的声音，认真说出想说的话。</textarea>
-        <div class="text-input-meta"><span>当前会话 · chatroom</span><span><b data-char-count>23</b>/120</span></div>
-
-        <div class="waveform" aria-hidden="true" data-waveform>
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        </div>
-
-        <div class="workbench-footer">
-          <p data-generation-status aria-live="polite">准备生成双宿主兼容语音</p>
-          <button class="generate-button" type="button" data-generate>
-            <span aria-hidden="true">▶</span><span>生成演示</span>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-showcase" id="showcase" aria-labelledby="showcase-title">
-      <div class="section-heading reveal">
-        <p class="eyebrow">REAL INTERFACE / 04</p>
-        <h2 id="showcase-title">现有实机界面与构建状态</h2>
-        <p>主页、设置、安全与关于页来自既有 Wtonec 实机截图；截图不代表 v1.7.2 的微信/QQ 悬浮窗、图标 ACK 或覆盖升级实机证据，这些项目继续以装机验证为准。</p>
-      </div>
-
-      <div class="showcase-layout reveal" data-gallery>
-        <div class="gallery-tabs" role="tablist" aria-label="Wtonec 页面截图">
-          <button type="button" role="tab" aria-selected="true" class="gallery-tab is-active" data-screen="home">
-            <span>01</span><strong>主页</strong><small>运行状态与项目入口</small>
-          </button>
-          <button type="button" role="tab" aria-selected="false" tabindex="-1" class="gallery-tab" data-screen="settings">
-            <span>02</span><strong>设置</strong><small>宿主、DEX 与维护</small>
-          </button>
-          <button type="button" role="tab" aria-selected="false" tabindex="-1" class="gallery-tab" data-screen="security">
-            <span>03</span><strong>安全</strong><small>本地扫描与模型配置</small>
-          </button>
-          <button type="button" role="tab" aria-selected="false" tabindex="-1" class="gallery-tab" data-screen="about">
-            <span>04</span><strong>关于</strong><small>构建身份与使用说明</small>
-          </button>
-        </div>
-
-        <div class="gallery-stage" data-gallery-stage>
-          <div class="gallery-accent" aria-hidden="true"></div>
-          <button class="screenshot-button" type="button" data-open-lightbox aria-label="放大当前 Wtonec 截图">
-            <img src="assets/wtonec-home.jpg" alt="Wtonec 主页实机截图" data-gallery-image>
-          </button>
-          <div class="gallery-caption">
-            <p data-gallery-eyebrow>运行状态</p>
-            <h3 data-gallery-title>一眼确认模块与语音功能</h3>
-            <span data-gallery-description>展示 LSPosed 激活状态、语音入口以及 TG、官网和项目链接。</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="pipeline-band" id="pipeline" aria-labelledby="pipeline-title">
-      <div class="pipeline-heading reveal">
-        <p class="eyebrow">AUDIO PIPELINE / 05</p>
-        <h2 id="pipeline-title">从文本到微信 / QQ 语音</h2>
-      </div>
-      <ol class="pipeline" aria-label="Wtonec 音频处理流程">
-        <li class="pipeline-step reveal"><span>01</span><strong>输入文字</strong><small>最多 500 字</small></li>
-        <li class="pipeline-step reveal"><span>02</span><strong>选择音色</strong><small>预设或 Fish ID</small></li>
-        <li class="pipeline-step reveal"><span>03</span><strong>获取 MP3</strong><small>流式写入缓存</small></li>
-        <li class="pipeline-step reveal"><span>04</span><strong>编码 SILK</strong><small>本地音频处理</small></li>
-        <li class="pipeline-step pipeline-step-final reveal"><span>05</span><strong>发送会话</strong><small>私聊与群聊</small></li>
-      </ol>
-    </section>
-
-    <section class="storage-band" id="storage" aria-labelledby="storage-title">
-      <div class="storage-copy reveal">
-        <p class="eyebrow">LOCAL DATA / 06</p>
-        <h2 id="storage-title">数据位置，清楚可查</h2>
-        <p>语音包、音色元数据、DEX 缓存和日志均按明确目录组织。Android 11+ 会限制普通文件管理器访问 Android/data，日常维护优先使用应用内导入、导出和清理入口。</p>
-        <p>微信与 QQ 保留独立宿主副本，模块通过受控 Bridge 维护共享 Key 和 canonical 语音库。跨设备迁移前先导出 MP3 和自定义音色。</p>
-        <a data-link="storage" href="https://github.com/tianxing226/wtonec/blob/main/docs/STORAGE.md" target="_blank" rel="noreferrer">查看存储说明 <span aria-hidden="true">↗</span></a>
-      </div>
-      <div class="storage-details reveal">
-        <div class="storage-root">
-          <span>微信宿主副本</span>
-          <code>/storage/emulated/0/Android/data/com.tencent.mm/Wtonec/</code>
-        </div>
-        <div class="storage-root">
-          <span>QQ 宿主副本</span>
-          <code>/storage/emulated/0/Android/data/com.tencent.mobileqq/Wtonec/</code>
-        </div>
-        <dl class="storage-list">
-          <div><dt>Wtonec/voices</dt><dd>模块 canonical 共享语音库</dd></div>
-          <div><dt>wtonec/voices</dt><dd>当前宿主可读取的语音副本</dd></div>
-          <div><dt>dex_cache</dt><dd>各宿主版本指纹与匹配结果</dd></div>
-          <div><dt>logs / crashes</dt><dd>运行日志与崩溃诊断</dd></div>
-          <div><dt>cache/Wtonec</dt><dd>可清理的语音生成任务缓存</dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <section class="section security-section" id="security" aria-labelledby="security-title">
-      <div class="security-visual reveal">
-        <img src="assets/wtonec-security.jpg" alt="Wtonec 安全页面实机截图">
-      </div>
-      <div class="security-copy reveal">
-        <p class="eyebrow">SECURITY FRAMEWORK / 07</p>
-        <h2 id="security-title">安全能力，按真实进度呈现</h2>
-        <p class="security-lead">安全页可读取设备当前可见的微信/QQ 作用域、模块包、进程与配置证据，并使用已配置的 OpenAI-compatible/第三方模型生成本地风险摘要。结果受系统权限、Root 状态和 LSPosed 可见性影响。</p>
-        <ul class="security-list">
-          <li><span></span>API Key 通过 Android Keystore 加密保存</li>
-          <li><span></span>构建身份与 DEX 缓存状态可追踪</li>
-          <li><span></span>第三方 endpoint、Key 和模型可独立配置</li>
-          <li><span></span>扫描数据与导出报告仅保存在本地</li>
-        </ul>
-        <div class="security-status"><i aria-hidden="true"></i><span>本地证据扫描 · 模型凭据使用 Keystore 加密</span></div>
-      </div>
-    </section>
-
-    <section class="closing" aria-labelledby="closing-title">
-      <p class="eyebrow">WTONEC / ANDROID VOICE STUDIO</p>
-      <h2 id="closing-title">让语音发送，更像一次创作。</h2>
-      <p>查看项目仓库与更新记录，或从文档入口继续了解安装、配置、数据目录和音频处理细节。</p>
-      <div class="closing-links">
-        <a data-link="xposed" href="https://github.com/Xposed-Modules-Repo/dev.wtonec" target="_blank" rel="noreferrer">Xposed 官方仓库 <span aria-hidden="true">↗</span></a>
-        <a data-link="github" href="https://github.com/tianxing226/wtonec" target="_blank" rel="noreferrer">项目仓库 <span aria-hidden="true">↗</span></a>
-        <a data-link="docs" href="https://github.com/tianxing226/wtonec/tree/main/docs" target="_blank" rel="noreferrer">项目文档 <span aria-hidden="true">↗</span></a>
-        <a href="https://github.com/tianxing226/wtonec/blob/main/docs/DISCLAIMER.md" target="_blank" rel="noreferrer">免责声明 <span aria-hidden="true">↗</span></a>
-        <a data-link="samples" href="https://github.com/tianxing226/wtonec/tree/main/examples/android-kotlin" target="_blank" rel="noreferrer">公开样例 <span aria-hidden="true">↗</span></a>
-      </div>
-    </section>
+    <section id="screenshots"><h2>看看实际界面</h2><p class="section-intro">1.7.4 · MuMu 模拟器实际截图</p><div class="gallery">
+      <figure><img src="assets/screenshots/1.7.4/home.png" alt="Wtonec 首页与模块状态" loading="lazy"><figcaption>首页与模块状态</figcaption></figure>
+      <figure><img src="assets/screenshots/1.7.4/floating-icons.png" alt="Wtonec 悬浮窗图标库" loading="lazy"><figcaption>悬浮窗图标库</figcaption></figure>
+      <figure><img src="assets/screenshots/1.7.4/settings.png" alt="Wtonec 设置界面" loading="lazy"><figcaption>设置与个性化</figcaption></figure>
+    </div></section>
+    <section id="updates"><h2>1.7.4 更新一览</h2><p class="section-intro">小红书、抖音加入，常用体验继续改进。</p><div class="updates"><ol>
+      <li>优化 API Key 保存，修复反复要求保存的问题。</li>
+      <li>优化各软件面板的数据同步，使用更流畅。</li>
+      <li>优化部分权限处理。</li>
+      <li>修复液态玻璃出现黑色子块、内容看不清的问题。</li>
+      <li>修复开启 VPN 或代理时可能出现的语音发送失败。</li>
+      <li>修复语音发送成功后的回执提示。</li>
+      <li>新增小红书私聊、群聊语音发送和表情包，适配 <strong>9.49.1</strong>。</li>
+      <li>新增抖音私聊、群聊语音发送和表情包，适配 <strong>40.7.0</strong>。</li>
+      <li>小红书、抖音的其他版本请自行测试。</li>
+      <li>更换软件包名为 <code>dev.wtonec.final</code>，安装后请重新启用模块。</li>
+      <li>所有音色和功能均免费使用，无需充值。</li>
+    </ol></div></section>
+    <section id="install"><h2>安装后，几步开始使用</h2><div class="install"><div><ol>
+      <li>下载并安装 APK，在 LSPosed/Xposed 中启用 Wtonec。</li>
+      <li>按需勾选微信、QQ、小红书、抖音，完全结束并重启对应应用。</li>
+      <li>按提示完成初始化，在聊天页打开悬浮球面板。</li>
+      <li>在线音色按提示配置自己的 API Key；系统 TTS 和本地语音包无需 Key。</li>
+    </ol><a href="https://github.com/tianxing226/wtonec/blob/main/docs/GETTING_STARTED.md">查看完整安装步骤 ↗</a></div><aside class="callout"><h3>从旧版升级</h3><p>本版包名变更，会作为新应用安装。请先导出需要保留的语音包，再启用新版、停用旧版模块，并重新勾选作用域。</p><p class="note">旧版数据不会自动迁移。小红书 9.49.1、抖音 40.7.0 之外的版本请自行测试。</p></aside></div></section>
   </main>
-
-  <footer class="site-footer">
-    <div class="brand footer-brand"><span class="brand-mark" aria-hidden="true">WT</span><span class="brand-name">Wtonec</span></div>
-    <p>Android 微信 / QQ 双宿主语音工作台</p>
-    <p>© <span data-year></span> Wtonec</p>
-  </footer>
-
-  <dialog class="lightbox" data-lightbox aria-label="Wtonec 截图预览">
-    <button type="button" class="lightbox-close" data-close-lightbox aria-label="关闭截图预览">×</button>
-    <img src="assets/wtonec-home.jpg" alt="Wtonec 页面大图" data-lightbox-image>
-    <p data-lightbox-caption>Wtonec 主页</p>
-  </dialog>
-
-  <script src="app.js"></script>
+  <footer><div class="footer-links"><a href="https://github.com/tianxing226/wtonec">GitHub 仓库</a><a href="https://github.com/Xposed-Modules-Repo/dev.wtonec">Xposed 仓库</a><a href="https://github.com/tianxing226/wtonec/blob/main/docs/RELEASE_1.7.4.md">更新与文件校验</a><a href="https://github.com/tianxing226/wtonec/blob/main/docs/PRIVACY.md">隐私说明</a></div><p>本项目与微信、QQ、小红书、抖音官方无隶属关系。请遵守平台规则，分享截图或日志前遮盖账号、聊天内容和密钥。</p></footer>
 </body>
 </html>

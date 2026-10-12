@@ -1,66 +1,28 @@
-# 微信与 QQ 双宿主说明
+# 微信 / QQ / 小红书 / 抖音适配说明
 
-Wtonec `1.6.9` 使用一个 `dev.wtonec` APK，同时声明：
+一个 Wtonec 安装包可用于四个应用，提供文字转语音、语音包、语音播报、克隆音色和表情包等功能。
 
-```text
-com.tencent.mm
-com.tencent.mobileqq
-```
+| 应用 | 标准包名 | 适配说明 |
+|---|---|---|
+| 微信 | `com.tencent.mm` | 支持聊天面板，兼容情况与微信版本有关 |
+| QQ | `com.tencent.mobileqq` | 支持 QQ NT 聊天面板，兼容情况与 QQ 版本有关 |
+| 小红书 | `com.xingin.xhs` | 新增适配 9.49.1 的私聊 / 群聊语音与表情包 |
+| 抖音 | `com.ss.android.ugc.aweme` | 新增适配 40.7.0 的私聊 / 群聊语音与表情包 |
 
-## 架构
+**小红书和抖音的其他版本请自行测试。** 多开版、修改包名版及其他变体不在以上标准包名范围内。
 
-宿主无关层负责音色、TTS、在线/本地语音包、下载、音频处理、面板和任务状态；微信与 QQ 各自实现会话捕获、入口、DEX 和语音发送器。
+## 如何启用
 
-```text
-共享语音与 UI
-├── 微信 Host Adapter
-│   ├── ChatFooter / 当前会话
-│   ├── 微信 WT 与长按入口
-│   └── 微信语音发送链
-└── QQ Host Adapter
-    ├── AIO / Contact / UID-UIN
-    ├── QQ WT 与协作式语音入口
-    └── QQ NT PTT 发送链
-```
+在 LSPosed/Xposed 中启用 Wtonec，勾选需要使用的应用，再完全关闭并重新打开它们。只用其中一个应用时，勾选它即可。
 
-## 悬浮球
+进入聊天页后点击 Wtonec 悬浮球；微信也可在语音输入模式下长按语音按钮。若提示需要匹配，按页面指引完成后重启应用。
 
-- 微信与 QQ 使用同一套宿主内悬浮球控制器。
-- 入口挂载到当前聊天 Activity 的 `android.R.id.content`，不申请系统悬浮窗权限。
-- 两个宿主分别保存开关与拖动位置。
-- 图标选择按宿主保存，通过 revision、SHA-256、PFD 安装和宿主 ACK 完成跨进程原子更新。
-- 内置图标从模块 Resources 解码，自定义图标从宿主私有副本加载；解析失败时保留可诊断默认入口。
-- Activity、AIO 或会话结束时清理入口和弱引用。
-- 打开面板前再次验证当前会话，降低生成期间切换聊天造成的误发风险。
+## 数据共享
 
-## QQ NT PTT
+各应用的面板可以共享配置和语音包数据。1.7.4 优化了面板之间的数据同步和 API Key 保存。
 
-QQ 发送链执行：
+每个应用仍有自己的聊天对象和运行状态。发送前请确认当前聊天，发送过程中不要连续点击或切换到其他聊天。
 
-```text
-会话校验
--> Tencent SILK 检查
--> nonce 去重
--> PTT 原子暂存
--> createPttElement
--> sendMsg
--> callback / timeout
-```
+## 更新注意
 
-发送成功状态由回调驱动，而不是只根据反射方法返回。暂存文件在 ACK 后继续保留一段时间，供 QQ 媒体线程读取。
-
-## 共享配置与语音库
-
-- API Key 由模块 UID 的 canonical Keystore store 持有；微信和 QQ 从同一份带 revision 的配置快照读取。
-- 微信和 QQ 经 UID、包名和签名检查后访问 Bridge。
-- 语音包 canonical 索引按 SILK SHA-256 去重。
-- 每个宿主仍保留自己的可读副本、DEX 缓存和故障日志。
-- Bridge 暂时断开时保留本地功能和最后有效缓存；恢复后由失效通知触发完整快照拉取，旧 revision 不覆盖新值。
-
-## 当前验证状态
-
-- `REPRODUCED(static)`：双 scope、Host Adapter、会话校验、nonce、PTT 暂存、回调状态机、共享目录契约、单元测试和 APK 审计。
-- `PENDING_DEVICE`：真实 QQ NT 的 QRoute/Contact 兼容、私聊/群聊气泡、播放、对端接收、双宿主 Bridge、入口生命周期和截图效果。当前两台 MuMu 实例均未安装 QQ 包，静态结果不替代宿主实机证据。
-
-反馈 QQ 问题时请提供 QQ 版本、versionCode、Android、LSPosed、会话类型、日志时间段和对端接收结果，并遮盖账号和会话数据。
-
+Wtonec 1.7.4 的包名为 `dev.wtonec.final`。更新后重新检查新版模块的作用域，并关闭旧版模块。应用版本变化可能影响兼容性；遇到问题请查看 [常见问题](TROUBLESHOOTING.md)。
