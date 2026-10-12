@@ -8,6 +8,8 @@ Wtonec 为微信、QQ、小红书和抖音提供文字转语音、语音包、�
 
 ## 从这里开始
 
+第一次使用？先看 **[简单使用教程](QUICK_TUTORIAL.md)**，从安装到发送第一条语音一步步操作。
+
 1. [安装与首次使用](GETTING_STARTED.md)
 2. [微信 / QQ / 小红书 / 抖音适配说明](DUAL_HOST.md)
 3. [API Key 配置](API_KEY.md)

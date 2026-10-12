@@ -4,7 +4,7 @@
 
 支持文字转语音、语音包、语音播报、克隆音色、表情包等功能，上百款音色可选。**所有音色和功能均免费使用，无需充值。**
 
-[⬇ 下载 1.7.4](https://github.com/tianxing226/wtonec/releases/tag/v1.7.4) · [官网](https://tianxing226.github.io/wtonec/) · [使用教程](http://i8c.cn/VpGwB)
+[⬇ 下载 1.7.4](https://github.com/tianxing226/wtonec/releases/tag/v1.7.4) · [官网](https://tianxing226.github.io/wtonec/) · [简单使用教程](docs/QUICK_TUTORIAL.md) · [原使用教程](http://i8c.cn/VpGwB)
 
 ## 有哪些功能
 
@@ -40,12 +40,17 @@
   <img src="assets/screenshots/1.7.4/announcement-settings.png" width="240" alt="Wtonec 语音播报与面板外观设置">
 </p>
 
-## 安装使用
+## 简单使用教程
 
-1. 准备 **Android 9+** 和已配置的 **LSPosed/Xposed** 环境，下载并安装 APK。
-2. 在框架中启用 Wtonec，按需勾选微信、QQ、小红书、抖音。
-3. 完全结束并重启对应应用，按提示完成初始化，在聊天页打开悬浮球面板。
-4. 在线音色按提示填写自己的 API Key；系统 TTS 和本地语音包无需 Key。
+1. **安装并启用：**准备 Android 9+ 和已配置的 LSPosed/Xposed，下载 APK 安装；启用 Wtonec，勾选要使用的应用。
+2. **打开悬浮窗：**使用抖音、小红书时，先到 Wtonec「设置」开启对应应用的悬浮窗入口。
+3. **进入聊天：**完全关闭并重启对应应用，按提示完成匹配；进入私聊或群聊，点击悬浮球打开面板。
+4. **选音色、输文字：**在线音色按提示保存自己的 API Key；想先试用可选择无需 Key 的系统 TTS。
+5. **试听并发送：**试听满意后，确认当前聊天对象，再点击「生成并发送」。
+
+语音包：导入或选择音频 → 试听 → 发送。表情包：打开表情包页面 → 选择表情 → 发送。
+
+**[查看完整的简单教程：安装、开面板、发语音及常见问题 →](docs/QUICK_TUTORIAL.md)**
 
 **抖音、小红书必须先在 Wtonec「设置」页面开启对应应用的悬浮窗入口，才能在聊天页点击悬浮球使用。**
 
