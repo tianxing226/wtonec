@@ -27,4 +27,4 @@
 
 ## 更新注意
 
-Wtonec 1.7.5 的包名为 `dev.wtonec.final`。更新后重新检查新版模块的作用域，并关闭旧版模块。应用版本变化可能影响兼容性；遇到问题请查看 [常见问题](TROUBLESHOOTING.md)。
+Wtonec 1.7.5 的包名为 `dev.wtonec.final`。更新后重新检查模块作用域；仅在仍保留更早不同包名旧模块时停用旧模块。应用版本变化可能影响兼容性；遇到问题请查看 [常见问题](TROUBLESHOOTING.md)。
