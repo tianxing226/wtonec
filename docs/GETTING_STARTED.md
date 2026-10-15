@@ -10,13 +10,13 @@ Wtonec 可以在微信、QQ、小红书和抖音聊天中使用文字转语音�
 
 ## 安装步骤
 
-1. 从 [GitHub](https://github.com/tianxing226/wtonec/releases/latest) 或 [Xposed 仓库](https://github.com/Xposed-Modules-Repo/dev.wtonec/releases/latest) 下载 `Wtonec-1.7.5-707-universal.apk` 并安装。
+1. 从 [GitHub](https://github.com/tianxing226/wtonec/releases/latest) 或 [Xposed 仓库](https://github.com/Xposed-Modules-Repo/dev.wtonec/releases/latest) 下载 `Wtonec-1.7.6-708-universal.apk` 并安装。
 2. 打开模块管理器，启用新版 Wtonec。
 3. 在作用域中勾选需要使用的应用：微信、QQ、小红书、抖音，可以按需选择。
 4. 完全关闭所选应用后重新打开。
 5. 如果出现适配匹配提示，按页面说明完成匹配，再重启对应应用。
 
-**升级提示：**从 1.7.4（`dev.wtonec.final`）升级可直接覆盖安装，保留原有设置和素材，无需卸载。更早的不同包名版本请先导出重要语音，再启用新版、停用旧模块。
+**升级提示：**从 1.7.4 / 1.7.5（`dev.wtonec.final`）升级可直接覆盖安装，保留原有设置和素材，无需卸载。更早的不同包名版本请先导出重要语音，再启用新版、停用旧模块。
 
 ## 第一次使用
 

@@ -18,7 +18,7 @@
 |---|---|
 | 主题、面板等应用设置 | `shared_prefs/wtonec_app_settings.xml` |
 | 统一配置、悬浮入口及宿主确认状态 | `files/wtonec_shared_bridge/`，包括 `wtonec_config_v2.json` |
-| 加密 API 配置 | `shared_prefs/wtonec_shared_secure_config_v2.xml`；其他 API 配置使用 `wtonec_openai_secure_v1.xml`、`wtonec_ai_provider_secure_v1.xml` |
+| 加密 API 配置 | `shared_prefs/wtonec_shared_secure_config_v2.xml` |
 
 宿主运行偏好位于 `/data/user/0/<宿主包>/shared_prefs/`，通用文件为 `wtonec_prefs.xml`。专用配置文件如下：
 
@@ -34,6 +34,7 @@
 | 内容 | 目录 |
 |---|---|
 | 共享本地表情主库 | `/data/user/0/dev.wtonec.final/files/wtonec/shared-stickers/`，图片与 `index-v1.json` 一起保存 |
+| 最近使用表情 | `/data/user/0/<运行包>/files/wtonec/recent-stickers/` |
 | 宿主表情副本与索引 | `/data/user/0/<宿主包>/files/wtonec/stickers/` |
 | 共享语音主库 | `/storage/emulated/0/Android/data/dev.wtonec.final/files/Wtonec/voices/` |
 | 宿主语音数据 | `/storage/emulated/0/Android/data/<宿主包>/Wtonec/wtonec/voices/` |
